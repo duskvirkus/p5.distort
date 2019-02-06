@@ -1,6 +1,7 @@
 class DistortString extends DistortElement {
 
-  constructor(controller, font, string, size, position) {
+  // TODO fix position
+  constructor(controller, position, size, font, string) {
     super(controller, position, size);
     this.font = font;
     this.string = string;
