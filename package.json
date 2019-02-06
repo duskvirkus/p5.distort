@@ -9,6 +9,8 @@
   "author": "Fi Graham",
   "license": "MIT",
   "devDependencies": {
-    "grunt": "^1.0.3"
+    "grunt": "^1.0.3",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-uglify": "^4.0.0"
   }
 }
