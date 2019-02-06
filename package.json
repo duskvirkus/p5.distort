@@ -9,7 +9,11 @@
   "author": "Fi Graham",
   "license": "MIT",
   "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
     "grunt": "^1.0.3",
+    "grunt-babel": "^8.0.0",
+    "grunt-contrib-clean": "^2.0.0",
     "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-uglify": "^4.0.0"
   }
