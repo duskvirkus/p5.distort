@@ -4,7 +4,7 @@ let helloWorld;
 let font;
 
 function preload() {
-  font = loadFont('./assets/Roboto-BlackItalic.ttf');
+  font = loadFont('./assets/Roboto-Black.ttf');
 }
 
 function setup() {
@@ -18,7 +18,6 @@ function setup() {
 
 function draw() {
   background(255);
-  helloWorld.setPosition(createVector(mouseX, mouseY));
   distort.update();
   distort.render();
 }

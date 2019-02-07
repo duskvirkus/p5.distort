@@ -200,6 +200,8 @@ class DistortString extends DistortElement {
 
     this.generateBounds();
     this.generatePoints();
+
+    this.setPosition(createVector(position.x, position.y)); // TODO make this more elegant
   }
 
   generatePoints() {
