@@ -105,10 +105,20 @@ class DistortElement {
     this.setController(controller);
   }
 
+  /**
+   * Section Size
+   * 
+   * TODO change this
+   */
   sectionSize() {
     return this.size / 3.0;
   }
 
+  /**
+   * Update Offset
+   * 
+   * Will update the offset to account for the current frame.
+   */
   updateOffset() {
     this.offset = map(this.controller.currentFrame, 0, this.controller.framesPerCycle, 0, this.sectionSize());
   }
