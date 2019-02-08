@@ -8,7 +8,7 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(windowWidth, windowHeight);
 
   frameRate(30);
   distort = new Distort(32, 30);
@@ -20,4 +20,9 @@ function draw() {
   background(255);
   distort.update();
   distort.render();
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+  helloWorld.setPosition(createVector(width / 2, height / 2));
 }
