@@ -16,6 +16,15 @@ class DistortElement {
     this.controller.addElement(this);
   }
 
+  changeController(controller) {
+    for (let i = 0; i < this.controller.elements.length; i++) {
+      if (this.controller.elements[i] == this) {
+        this.controller.elements.splice(i, 1);
+      }
+    }
+    this.setController(controller);
+  }
+
   sectionSize() {
     return this.size / 3.0;
   }
