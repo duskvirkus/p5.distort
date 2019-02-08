@@ -1,16 +1,25 @@
 class DistortCircle extends DistortElement {
 
   /**
+   * Constructor
    * 
+   * @param {Distort} controller 
    * @param {p5.Vector} position 
-   * @param {number} size 
-   * @param {number:int} detail 
+   * @param {Number} size 
+   * @param {Number} detail 
    */
   constructor(controller, position, size, detail) {
     super(controller, position, size);
     this.generatePoints(detail);
   }
 
+  /**
+   * Generate Points
+   * 
+   * Will generate points for this element in a circle shape. Detail defines how many points are generated.
+   * 
+   * @param {Number} detail 
+   */
   generatePoints(detail) {
     let points = [];
     for (let i = 0; i < detail; i++) {
@@ -22,6 +31,11 @@ class DistortCircle extends DistortElement {
     this.pointGroups.push(points);
   }
 
+  /**
+   * Radius
+   * 
+   * Returns the radius of the circle.
+   */
   radius() {
     return this.scaledSize() / 2;
   }
