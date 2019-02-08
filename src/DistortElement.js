@@ -1,5 +1,15 @@
 class DistortElement {
 
+  /**
+   * Constructor
+   * 
+   * Creates a distort element. This constructor is not meant to be called directly.
+   * Should be called as super() by a class that extends DistortElement.
+   * 
+   * @param {Distort} controller 
+   * @param {p5.Vector} position 
+   * @param {Number} size 
+   */
   constructor(controller, position, size) {
     this.setController(controller);
     this.position = position;
@@ -11,9 +21,33 @@ class DistortElement {
     this.bounds = [];
   }
 
+  /**
+   * Set Controller
+   * 
+   * Will set the controller for this element while adding the element to the array of elements within the controller.
+   * 
+   * @param {Distort} controller 
+   */
   setController(controller) {
     this.controller = controller;
     this.controller.addElement(this);
+  }
+
+  /**
+   * Change Controller
+   * 
+   * Used to change the controller after an element is created.
+   * The same as setController() just removes the element from the current controller to avoid unexpected behavior.
+   * 
+   * @param {Distort} controller 
+   */
+  changeController(controller) {
+    for (let i = 0; i < this.controller.elements.length; i++) {
+      if (this.controller.elements[i] == this) {
+        this.controller.elements.splice(i, 1);
+      }
+    }
+    this.setController(controller);
   }
 
   sectionSize() {

@@ -1,5 +1,16 @@
 class DistortString extends DistortElement {
 
+  /**
+   * Constructor
+   * 
+   * Creates an element from a string of text.
+   * 
+   * @param {Distort} controller 
+   * @param {p5.Vector} position 
+   * @param {Number} size 
+   * @param {p5.Font} font 
+   * @param {String} string 
+   */
   constructor(controller, position, size, font, string) {
     super(controller, position, size);
     this.font = font;
@@ -13,6 +24,11 @@ class DistortString extends DistortElement {
     this.setPosition(createVector(position.x, position.y)); // TODO make this more elegant
   }
 
+  /**
+   * Generate Points
+   * 
+   * Will generate points from the string and separates the different shapes required to draw text.
+   */
   generatePoints() {
     let p5Points = this.font.textToPoints(
       this.string,
@@ -38,15 +54,17 @@ class DistortString extends DistortElement {
     this.pointGroups.push(points);
   }
 
-  distanceLog(logAll) {
-    for (let i = 1; i < this.points.length; i++) {
-      let distance = dist(this.points[i - 1].x, this.points[i - 1].y, this.points[i].x, this.points[i].y);
-      if (logAll || distance > this.distanceThreshold) {
-        console.log(distance);
-      }
-    }
-  }
-
+  /**
+   * Different Shape
+   * 
+   * Helper method that returns a boolean if point at an index should be in a different shape.
+   * 
+   * TODO change name
+   * TODO improve distanceThreshold
+   * 
+   * @param {p5.Vector[]} points 
+   * @param {Number} pointIndex 
+   */
   differentShape(points, pointIndex) {
     if (pointIndex <= 0 || pointIndex > points.length - 1) {
       return false;
@@ -56,6 +74,11 @@ class DistortString extends DistortElement {
     }
   }
 
+  /**
+   * Generate Bounds
+   * 
+   * A method that will generate text bounds for use in positioning text correctly.
+   */
   generateBounds() {
     this.bounds = this.font.textBounds(this.string, this.position.x, this.position.y, this.scaledSize());
     this.position = createVector(this.position.x - ((this.bounds.x) / 2), this.position.y - (this.bounds.y / 2));
