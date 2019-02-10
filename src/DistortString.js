@@ -15,10 +15,11 @@ class DistortString extends DistortElement {
    * @param {p5.Font} font 
    * @param {String} string 
    */
-  constructor(controller, position, size, font, string) {
+  constructor(controller, position, font, string, size) {
     super(controller, position, size);
     this.font = font;
     this.string = string;
+    this.size = size;
 
     this.distanceThreshold = 3;
 
@@ -38,7 +39,7 @@ class DistortString extends DistortElement {
       this.string,
       (this.position.x - this.bounds.w / 2) - this.bounds.advance,
       this.position.y + this.bounds.h / 2,
-      this.scaledSize(),
+      this.getSize(),
       {
         sampleFactor: 1,
         simplifyThreshold: 0,
@@ -83,8 +84,15 @@ class DistortString extends DistortElement {
    * @method generateBounds
    */
   generateBounds() {
-    this.bounds = this.font.textBounds(this.string, this.position.x, this.position.y, this.scaledSize());
+    this.bounds = this.font.textBounds(this.string, this.position.x, this.position.y, this.getSize());
     this.position = createVector(this.position.x - ((this.bounds.x) / 2), this.position.y - (this.bounds.y / 2));
+  }
+
+  /**
+   * 
+   */
+  getSize() {
+    return this.controller.scaleValue(this.size);
   }
 
 }

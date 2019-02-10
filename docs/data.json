@@ -31,7 +31,7 @@
         "src\\DistortEllipse.js": {
             "name": "src\\DistortEllipse.js",
             "modules": {
-                "elements-c": 1
+                "elements-primitives": 1
             },
             "classes": {
                 "DistortEllipse": 1
@@ -46,6 +46,17 @@
             },
             "classes": {
                 "DistortString": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src\\TransformPointBuiltIn.js": {
+            "name": "src\\TransformPointBuiltIn.js",
+            "modules": {
+                "tranform-point-functions": 1
+            },
+            "classes": {
+                "built-in-transform-point-functions": 1
             },
             "fors": {},
             "namespaces": {}
@@ -70,7 +81,7 @@
             "name": "elements",
             "submodules": {
                 "elements-abstract": 1,
-                "elements-c": 1,
+                "elements-primitives": 1,
                 "elements-text": 1
             },
             "elements": {},
@@ -100,8 +111,8 @@
             "line": 1,
             "description": "Creates a distort element. This constructor is not meant to be called directly.\nShould be called as super() by a class that extends DistortElement."
         },
-        "elements-c": {
-            "name": "elements-c",
+        "elements-primitives": {
+            "name": "elements-primitives",
             "submodules": {},
             "elements": {},
             "classes": {
@@ -130,6 +141,19 @@
             "file": "src\\DistortString.js",
             "line": 1,
             "description": "Creates a DistortElement from a string of text."
+        },
+        "tranform-point-functions": {
+            "name": "tranform-point-functions",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "built-in-transform-point-functions": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "src\\TransformPointBuiltIn.js",
+            "line": 1
         }
     },
     "classes": {
@@ -171,7 +195,7 @@
             "plugin_for": [],
             "extension_for": [],
             "module": "elements",
-            "submodule": "elements-c",
+            "submodule": "elements-primitives",
             "namespace": "",
             "file": "src\\DistortEllipse.js",
             "line": 1
@@ -190,6 +214,19 @@
             "file": "src\\DistortString.js",
             "line": 1,
             "description": "Creates a DistortElement from a string of text."
+        },
+        "built-in-transform-point-functions": {
+            "name": "built-in-transform-point-functions",
+            "shortname": "built-in-transform-point-functions",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "tranform-point-functions",
+            "namespace": "",
+            "file": "src\\TransformPointBuiltIn.js",
+            "line": 1
         }
     },
     "elements": {},
@@ -216,6 +253,15 @@
         {
             "file": "src\\DistortController.js",
             "line": 22,
+            "description": "Returns a float value between 0 and 1 that represents the current location in the frameCycle.",
+            "itemtype": "method",
+            "name": "currentTime",
+            "class": "Distort",
+            "module": "controller"
+        },
+        {
+            "file": "src\\DistortController.js",
+            "line": 31,
             "description": "Adds an element to the controller. Calling this method directly may result in problems.\nThis will be done automatically when a DistortElement is created.\nIf an Element is already been created it's controller should be changed using the changeController() method in DistortElement.",
             "itemtype": "method",
             "name": "addElement",
@@ -231,7 +277,7 @@
         },
         {
             "file": "src\\DistortController.js",
-            "line": 34,
+            "line": 43,
             "description": "Will update frame and all DistortElements under the controller.",
             "itemtype": "method",
             "name": "update",
@@ -240,10 +286,24 @@
         },
         {
             "file": "src\\DistortController.js",
-            "line": 46,
+            "line": 55,
             "description": "Renders all DistortElements under this controller.",
             "itemtype": "method",
             "name": "render",
+            "class": "Distort",
+            "module": "controller"
+        },
+        {
+            "file": "src\\DistortController.js",
+            "line": 66,
+            "description": "Scales a value to account for the distortFactor.",
+            "params": [
+                {
+                    "name": "value",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
             "class": "Distort",
             "module": "controller"
         },
@@ -274,7 +334,7 @@
         },
         {
             "file": "src\\DistortElement.js",
-            "line": 28,
+            "line": 26,
             "description": "Will set the controller for this element while adding the element to the array of elements within the controller.",
             "itemtype": "method",
             "name": "setController",
@@ -291,7 +351,7 @@
         },
         {
             "file": "src\\DistortElement.js",
-            "line": 39,
+            "line": 37,
             "description": "Used to change the controller after an element is created.\nThe same as setController() just removes the element from the current controller to avoid unexpected behavior.",
             "itemtype": "method",
             "name": "changeController",
@@ -308,26 +368,7 @@
         },
         {
             "file": "src\\DistortElement.js",
-            "line": 56,
-            "itemtype": "method",
-            "name": "sectionSize",
-            "class": "DistortElement",
-            "module": "elements",
-            "submodule": "elements-abstract"
-        },
-        {
-            "file": "src\\DistortElement.js",
-            "line": 63,
-            "description": "Will update the offset to account for the current frame.",
-            "itemtype": "method",
-            "name": "updateOffset",
-            "class": "DistortElement",
-            "module": "elements",
-            "submodule": "elements-abstract"
-        },
-        {
-            "file": "src\\DistortElement.js",
-            "line": 72,
+            "line": 53,
             "description": "Method that will update all variables necessary to advance the frame.",
             "itemtype": "method",
             "name": "update",
@@ -337,7 +378,7 @@
         },
         {
             "file": "src\\DistortElement.js",
-            "line": 81,
+            "line": 62,
             "description": "In it's current state this will render an element to a p5 canvas transforming the points to distort the shape.",
             "itemtype": "method",
             "name": "render",
@@ -347,24 +388,7 @@
         },
         {
             "file": "src\\DistortElement.js",
-            "line": 105,
-            "description": "Helper method for the transformPoint() method. Separate so it can be overridden or used in an overridden transformPoint() method.",
-            "itemtype": "method",
-            "name": "calculateProgress",
-            "params": [
-                {
-                    "name": "point",
-                    "description": "",
-                    "type": "p5.Vector"
-                }
-            ],
-            "class": "DistortElement",
-            "module": "elements",
-            "submodule": "elements-abstract"
-        },
-        {
-            "file": "src\\DistortElement.js",
-            "line": 115,
+            "line": 88,
             "description": "The default black and white drawing traits for all elements. Can be overridden using the setDrawingTraits() method.",
             "itemtype": "method",
             "name": "drawingTraits",
@@ -374,7 +398,7 @@
         },
         {
             "file": "src\\DistortElement.js",
-            "line": 125,
+            "line": 98,
             "description": "Takes one function as a parameter. The passed function should have no parameters and use set the stroke and fill.\nIt will be called at the beginning of the render() method.",
             "itemtype": "method",
             "name": "setDrawingTraits",
@@ -391,29 +415,7 @@
         },
         {
             "file": "src\\DistortElement.js",
-            "line": 136,
-            "description": "This is a default transform point function but another one can be set using the setTransformPoint() method.\nReturn a new p5.Vector as not to effect the current state of the points being passed as a parameter.",
-            "itemtype": "method",
-            "name": "transformPoint",
-            "params": [
-                {
-                    "name": "element",
-                    "description": "",
-                    "type": "DistortElement"
-                },
-                {
-                    "name": "point",
-                    "description": "",
-                    "type": "p5.Vector"
-                }
-            ],
-            "class": "DistortElement",
-            "module": "elements",
-            "submodule": "elements-abstract"
-        },
-        {
-            "file": "src\\DistortElement.js",
-            "line": 149,
+            "line": 109,
             "description": "Will override how a point is transformed. Pass in a function that receives a p5.Vector and return a different p5.Vector.",
             "itemtype": "method",
             "name": "setTransformPoint",
@@ -430,23 +432,64 @@
         },
         {
             "file": "src\\DistortElement.js",
-            "line": 159,
-            "description": "Will return a size that accounts for the distortFactor.",
-            "itemtype": "method",
-            "name": "scaledSize",
-            "class": "DistortElement",
-            "module": "elements",
-            "submodule": "elements-abstract"
-        },
-        {
-            "file": "src\\DistortElement.js",
-            "line": 168,
+            "line": 119,
             "description": "Will change the position of an element that has already been created.",
             "itemtype": "method",
             "name": "setPosition",
             "params": [
                 {
                     "name": "position",
+                    "description": "",
+                    "type": "p5.Vector"
+                }
+            ],
+            "class": "DistortElement",
+            "module": "elements",
+            "submodule": "elements-abstract"
+        },
+        {
+            "file": "src\\DistortElement.js",
+            "line": 139,
+            "description": "Returns the distance between the center of the element and a point.",
+            "itemtype": "method",
+            "name": "distanceFromCenter",
+            "params": [
+                {
+                    "name": "point",
+                    "description": "",
+                    "type": "p5.Vector"
+                }
+            ],
+            "class": "DistortElement",
+            "module": "elements",
+            "submodule": "elements-abstract"
+        },
+        {
+            "file": "src\\DistortElement.js",
+            "line": 149,
+            "description": "Returns the distance between the center of the element and a point. Only accounting for the X dimension.",
+            "itemtype": "method",
+            "name": "distanceFromCenterX",
+            "params": [
+                {
+                    "name": "point",
+                    "description": "",
+                    "type": "p5.Vector"
+                }
+            ],
+            "class": "DistortElement",
+            "module": "elements",
+            "submodule": "elements-abstract"
+        },
+        {
+            "file": "src\\DistortElement.js",
+            "line": 159,
+            "description": "Returns the distance between the center of the element and a point. Only accounting for the Y dimension.",
+            "itemtype": "method",
+            "name": "distanceFromCenterY",
+            "params": [
+                {
+                    "name": "point",
                     "description": "",
                     "type": "p5.Vector"
                 }
@@ -488,7 +531,7 @@
             ],
             "class": "DistortEllipse",
             "module": "elements",
-            "submodule": "elements-c"
+            "submodule": "elements-primitives"
         },
         {
             "file": "src\\DistortEllipse.js",
@@ -505,7 +548,27 @@
             ],
             "class": "DistortEllipse",
             "module": "elements",
-            "submodule": "elements-c"
+            "submodule": "elements-primitives"
+        },
+        {
+            "file": "src\\DistortEllipse.js",
+            "line": 40,
+            "description": "Returns width accounting for distortFactor.",
+            "itemtype": "method",
+            "name": "getWidth",
+            "class": "DistortEllipse",
+            "module": "elements",
+            "submodule": "elements-primitives"
+        },
+        {
+            "file": "src\\DistortEllipse.js",
+            "line": 49,
+            "description": "Returns width accounting for distortFactor.",
+            "itemtype": "method",
+            "name": "getHeight",
+            "class": "DistortEllipse",
+            "module": "elements",
+            "submodule": "elements-primitives"
         },
         {
             "file": "src\\DistortString.js",
@@ -544,7 +607,7 @@
         },
         {
             "file": "src\\DistortString.js",
-            "line": 31,
+            "line": 32,
             "description": "Will generate points from the string and separates the different shapes required to draw text.",
             "itemtype": "method",
             "name": "generatePoints",
@@ -554,7 +617,7 @@
         },
         {
             "file": "src\\DistortString.js",
-            "line": 64,
+            "line": 65,
             "description": "Helper method that returns a boolean if point at an index should be in a different shape.",
             "itemtype": "method",
             "name": "differentShape",
@@ -576,19 +639,56 @@
         },
         {
             "file": "src\\DistortString.js",
-            "line": 80,
+            "line": 81,
             "description": "A method that will generate text bounds for use in positioning text correctly.",
             "itemtype": "method",
             "name": "generateBounds",
             "class": "DistortString",
             "module": "elements",
             "submodule": "elements-text"
+        },
+        {
+            "file": "src\\DistortString.js",
+            "line": 91,
+            "class": "DistortString",
+            "module": "elements",
+            "submodule": "elements-text"
+        },
+        {
+            "file": "src\\TransformPointBuiltIn.js",
+            "line": 7,
+            "description": "Will transform a point based on perlin noise in both the x and y direction.",
+            "itemtype": "property",
+            "name": "PERLIN_NOISE",
+            "final": 1,
+            "return": {
+                "description": "a point transformed with some perlin noise",
+                "type": "p5.Vector"
+            },
+            "class": "built-in-transform-point-functions",
+            "module": "tranform-point-functions",
+            "subprops": [
+                {
+                    "name": "element",
+                    "description": "",
+                    "type": "DistortElement"
+                },
+                {
+                    "name": "point",
+                    "description": "",
+                    "type": "p5.Vector"
+                }
+            ]
         }
     ],
     "warnings": [
         {
             "message": "Missing item type",
             "line": " src\\DistortController.js:10"
+        },
+        {
+            "message": "Missing item type\nScales a value to account for the distortFactor.",
+            "line": " src\\DistortController.js:66"
         },
         {
             "message": "Missing item type",
@@ -601,6 +701,10 @@
         {
             "message": "Missing item type",
             "line": " src\\DistortString.js:10"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\DistortString.js:91"
         }
     ]
 }

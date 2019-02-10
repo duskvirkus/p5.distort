@@ -20,6 +20,15 @@ class Distort {
   }
 
   /**
+   * Returns a float value between 0 and 1 that represents the current location in the frameCycle.
+   * 
+   * @method currentTime
+   */
+  currentTime() {
+    return map(this.currentFrame, 0, this.framesPerCycle, 0, 1);
+  }
+
+  /**
    * Adds an element to the controller. Calling this method directly may result in problems.
    * This will be done automatically when a DistortElement is created.
    * If an Element is already been created it's controller should be changed using the changeController() method in DistortElement.
@@ -54,6 +63,15 @@ class Distort {
     }
   }
 
+  /**
+   * Scales a value to account for the distortFactor.
+   * 
+   * @param {Number} value 
+   */
+  scaleValue(value) {
+    return value - 2 * (value / this.distortFactor);
+  }
+
 }
 /**
  * Creates a distort element. This constructor is not meant to be called directly.
@@ -71,11 +89,9 @@ class DistortElement {
    * @param {p5.Vector} position 
    * @param {Number} size 
    */
-  constructor(controller, position, size) {
+  constructor(controller, position) {
     this.setController(controller);
     this.position = position;
-    this.size = size;
-    this.offset = 0;
 
     this.controller;
     this.pointGroups = [];
@@ -109,30 +125,13 @@ class DistortElement {
     this.setController(controller);
   }
 
-  // TODO change this method
-  /**
-   * @method sectionSize
-   */
-  sectionSize() {
-    return this.size / 3.0;
-  }
-
-  /**
-   * Will update the offset to account for the current frame.
-   * 
-   * @method updateOffset
-   */
-  updateOffset() {
-    this.offset = map(this.controller.currentFrame, 0, this.controller.framesPerCycle, 0, this.sectionSize());
-  }
-
   /**
    * Method that will update all variables necessary to advance the frame.
    * 
    * @method update
    */
   update() {
-    this.updateOffset();
+
   }
 
   /**
@@ -149,7 +148,9 @@ class DistortElement {
       }
       for (let j = 0; j < this.pointGroups[i].length; j++) {
         let p = this.pointGroups[i][j];
-        p = this.transformPoint(this, p);
+        if (!(typeof this.transformPoint === 'undefined')) {
+          p = this.transformPoint(this, p);
+        }
         vertex(p.x, p.y);
       }
       if (i != 0) {
@@ -157,16 +158,6 @@ class DistortElement {
       }
     }
     endShape(CLOSE);
-  }
-
-  /**
-   * Helper method for the transformPoint() method. Separate so it can be overridden or used in an overridden transformPoint() method.
-   * 
-   * @method calculateProgress
-   * @param {p5.Vector} point
-   */
-  calculateProgress(point) {
-    return map(point.x + this.offset % this.sectionSize(), 0, this.sectionSize(), 0, TWO_PI)
   }
 
   /**
@@ -191,19 +182,6 @@ class DistortElement {
   }
 
   /**
-   * This is a default transform point function but another one can be set using the setTransformPoint() method.
-   * Return a new p5.Vector as not to effect the current state of the points being passed as a parameter.
-   * 
-   * @method transformPoint
-   * @param {DistortElement} element
-   * @param {p5.Vector} point 
-   */
-  transformPoint(element, point) {
-    let progress = element.calculateProgress(point);
-    return createVector(point.x, point.y + map(sin(progress), -1, 1, - element.size / element.controller.distortFactor, element.size / element.controller.distortFactor));
-  }
-
-  /**
    * Will override how a point is transformed. Pass in a function that receives a p5.Vector and return a different p5.Vector.
    * 
    * @method setTransformPoint
@@ -211,15 +189,6 @@ class DistortElement {
    */
   setTransformPoint(transformPointFunction) {
     this.transformPoint = transformPointFunction;
-  }
-
-  /**
-   * Will return a size that accounts for the distortFactor.
-   * 
-   * @method scaledSize
-   */
-  scaledSize() {
-    return this.size - 2 * (this.size / this.controller.distortFactor);
   }
 
   /**
@@ -242,6 +211,94 @@ class DistortElement {
     this.position = position;
   }
 
+  /**
+   * Returns the distance between the center of the element and a point.
+   * 
+   * @method distanceFromCenter
+   * @param {p5.Vector} point 
+   */
+  distanceFromCenter(point) {
+    return dist(point.x, point.y, this.position.x, this.position.y);
+  }
+
+  /**
+   * Returns the distance between the center of the element and a point. Only accounting for the X dimension.
+   * 
+   * @method distanceFromCenterX
+   * @param {p5.Vector} point 
+   */
+  distanceFromCenterX(point) {
+    return point.x - this.position.x;
+  }
+
+  /**
+   * Returns the distance between the center of the element and a point. Only accounting for the Y dimension.
+   * 
+   * @method distanceFromCenterY
+   * @param {p5.Vector} point 
+   */
+  distanceFromCenterY(point) {
+    return point.y - this.position.x;
+  }
+
+}
+/**
+ * @module elements
+ * @submodule elements-primitives
+ * @class DistortEllipse
+ */
+class DistortEllipse extends DistortElement {
+
+  /**
+   * @constructor
+   * @param {Distort} controller 
+   * @param {p5.Vector} position 
+   * @param {Number} width
+   * @param {Number} height
+   * @param {Number} detail 
+   */
+  constructor(controller, position, width, height, detail) {
+    super(controller, position);
+    this.width = width;
+    this.height = height;
+    this.generatePoints(detail);
+  }
+
+  /**
+   * Will generate points for this element in a circle shape. Detail defines how many points are generated.
+   * 
+   * @method generatePoints
+   * @param {Number} detail 
+   */
+  generatePoints(detail) {
+    let points = [];
+    for (let i = 0; i < detail; i++) {
+      let angle = map(i, 0, detail, 0, TWO_PI);
+      let x = this.getWidth() / 2 * cos(angle);
+      let y = this.getHeight() / 2 * sin(angle);
+      points.push(createVector(x + this.position.x, y + this.position.y));
+    }
+    this.pointGroups.push(points);
+  }
+
+  /**
+   * Returns width accounting for distortFactor.
+   * 
+   * @method getWidth
+   */
+  getWidth() {
+    return this.controller.scaleValue(this.width);
+  }
+
+  /**
+   * Returns width accounting for distortFactor.
+   * 
+   * @method getHeight
+   */
+  getHeight() {
+    return this.controller.scaleValue(this.height);
+  }
+
 }
 /**
  * Creates a DistortElement from a string of text.
@@ -260,10 +317,11 @@ class DistortString extends DistortElement {
    * @param {p5.Font} font 
    * @param {String} string 
    */
-  constructor(controller, position, size, font, string) {
+  constructor(controller, position, font, string, size) {
     super(controller, position, size);
     this.font = font;
     this.string = string;
+    this.size = size;
 
     this.distanceThreshold = 3;
 
@@ -283,7 +341,7 @@ class DistortString extends DistortElement {
       this.string,
       (this.position.x - this.bounds.w / 2) - this.bounds.advance,
       this.position.y + this.bounds.h / 2,
-      this.scaledSize(),
+      this.getSize(),
       {
         sampleFactor: 1,
         simplifyThreshold: 0,
@@ -328,8 +386,15 @@ class DistortString extends DistortElement {
    * @method generateBounds
    */
   generateBounds() {
-    this.bounds = this.font.textBounds(this.string, this.position.x, this.position.y, this.scaledSize());
+    this.bounds = this.font.textBounds(this.string, this.position.x, this.position.y, this.getSize());
     this.position = createVector(this.position.x - ((this.bounds.x) / 2), this.position.y - (this.bounds.y / 2));
+  }
+
+  /**
+   * 
+   */
+  getSize() {
+    return this.controller.scaleValue(this.size);
   }
 
 }

@@ -1,6 +1,6 @@
 /**
  * @module elements
- * @submodule elements-c
+ * @submodule elements-primitives
  * @class DistortEllipse
  */
 class DistortEllipse extends DistortElement {
@@ -14,9 +14,9 @@ class DistortEllipse extends DistortElement {
    * @param {Number} detail 
    */
   constructor(controller, position, width, height, detail) {
-    super(controller, position, height); // TODO change this
-    this.height = height;
+    super(controller, position);
     this.width = width;
+    this.height = height;
     this.generatePoints(detail);
   }
 
@@ -30,11 +30,29 @@ class DistortEllipse extends DistortElement {
     let points = [];
     for (let i = 0; i < detail; i++) {
       let angle = map(i, 0, detail, 0, TWO_PI);
-      let x = this.width / 2 * cos(angle);
-      let y = this.height / 2 * sin(angle);
+      let x = this.getWidth() / 2 * cos(angle);
+      let y = this.getHeight() / 2 * sin(angle);
       points.push(createVector(x + this.position.x, y + this.position.y));
     }
     this.pointGroups.push(points);
+  }
+
+  /**
+   * Returns width accounting for distortFactor.
+   * 
+   * @method getWidth
+   */
+  getWidth() {
+    return this.controller.scaleValue(this.width);
+  }
+
+  /**
+   * Returns width accounting for distortFactor.
+   * 
+   * @method getHeight
+   */
+  getHeight() {
+    return this.controller.scaleValue(this.height);
   }
 
 }
