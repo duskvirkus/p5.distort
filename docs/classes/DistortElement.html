@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>DistortElement - p5.distort</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="icon" href="../assets/favicon.ico">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../assets/css/logo.png" title="p5.distort" width="117" height="52"></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 0.0.1</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+                
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+                
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/Distort.html">Distort</a></li>
+                                <li><a href="../classes/DistortCircle.html">DistortCircle</a></li>
+                                <li><a href="../classes/DistortElement.html">DistortElement</a></li>
+                                <li><a href="../classes/DistortString.html">DistortString</a></li>
+                            </ul>
+                
+                
+                            <ul id="api-modules" class="apis modules">
+                                <li><a href="../modules/controller.html">controller</a></li>
+                                <li><a href="../modules/elements.html">elements</a></li>
+                                <li><a href="../modules/elements-abstract.html">elements-abstract</a></li>
+                                <li><a href="../modules/elements-primitives.html">elements-primitives</a></li>
+                                <li><a href="../modules/elements-text.html">elements-text</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<h1>DistortElement Class</h1>
+<div class="box meta">
+
+
+        <div class="foundat">
+            Defined in: <a href="../files/src_DistortElement.js.html#l1"><code>src\DistortElement.js:1</code></a>
+        </div>
+
+            Module: <a href="../modules/elements-abstract.html">elements-abstract</a><br>
+            Parent Module: <a href="../modules/elements.html">elements</a>
+
+</div>
+
+
+<div class="box intro">
+    <p>Creates a distort element. This constructor is not meant to be called directly.
+Should be called as super() by a class that extends DistortElement.</p>
+
+</div>
+
+
+<div id="classdocs" class="tabview">
+    <ul class="api-class-tabs">
+        <li class="api-class-tab index"><a href="#index">Index</a></li>
+
+            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
+    </ul>
+
+    <div>
+        <div id="index" class="api-class-tabpanel index">
+            <h2 class="off-left">Item Index</h2>
+
+                <div class="index-section methods">
+                    <h3>Methods</h3>
+
+                    <ul class="index-list methods">
+                            <li class="index-item method">
+                                <a href="#method_calculateProgress">calculateProgress</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_changeController">changeController</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_drawingTraits">drawingTraits</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_render">render</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_scaledSize">scaledSize</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_sectionSize">sectionSize</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_setController">setController</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_setDrawingTraits">setDrawingTraits</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_setPosition">setPosition</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_setTransformPoint">setTransformPoint</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_transformPoint">transformPoint</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_update">update</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_updateOffset">updateOffset</a>
+
+                            </li>
+                    </ul>
+                </div>
+
+
+
+        </div>
+
+            <div id="methods" class="api-class-tabpanel">
+                <h2 class="off-left">Methods</h2>
+
+<div id="method_calculateProgress" class="method item">
+    <h3 class="name"><code>calculateProgress</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>point</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/src_DistortElement.js.html#l105"><code>src\DistortElement.js:105</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Helper method for the transformPoint() method. Separate so it can be overridden or used in an overridden transformPoint() method.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">point</code>
+                        <span class="type">p5.Vector</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_changeController" class="method item">
+    <h3 class="name"><code>changeController</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>controller</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/src_DistortElement.js.html#l39"><code>src\DistortElement.js:39</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Used to change the controller after an element is created.
+The same as setController() just removes the element from the current controller to avoid unexpected behavior.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">controller</code>
+                        <span class="type"><a href="../classes/Distort.html" class="crosslink">Distort</a></span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_drawingTraits" class="method item">
+    <h3 class="name"><code>drawingTraits</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/src_DistortElement.js.html#l115"><code>src\DistortElement.js:115</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>The default black and white drawing traits for all elements. Can be overridden using the setDrawingTraits() method.</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_render" class="method item">
+    <h3 class="name"><code>render</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/src_DistortElement.js.html#l81"><code>src\DistortElement.js:81</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>In it's current state this will render an element to a p5 canvas transforming the points to distort the shape.</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_scaledSize" class="method item">
+    <h3 class="name"><code>scaledSize</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/src_DistortElement.js.html#l159"><code>src\DistortElement.js:159</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Will return a size that accounts for the distortFactor.</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_sectionSize" class="method item">
+    <h3 class="name"><code>sectionSize</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/src_DistortElement.js.html#l56"><code>src\DistortElement.js:56</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+
+
+
+</div>
+<div id="method_setController" class="method item">
+    <h3 class="name"><code>setController</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>controller</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/src_DistortElement.js.html#l28"><code>src\DistortElement.js:28</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Will set the controller for this element while adding the element to the array of elements within the controller.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">controller</code>
+                        <span class="type"><a href="../classes/Distort.html" class="crosslink">Distort</a></span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_setDrawingTraits" class="method item">
+    <h3 class="name"><code>setDrawingTraits</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>drawingTraitsFunction</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/src_DistortElement.js.html#l125"><code>src\DistortElement.js:125</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Takes one function as a parameter. The passed function should have no parameters and use set the stroke and fill.
+It will be called at the beginning of the render() method.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">drawingTraitsFunction</code>
+                        <span class="type">Function</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_setPosition" class="method item">
+    <h3 class="name"><code>setPosition</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>position</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/src_DistortElement.js.html#l168"><code>src\DistortElement.js:168</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Will change the position of an element that has already been created.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">position</code>
+                        <span class="type">p5.Vector</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_setTransformPoint" class="method item">
+    <h3 class="name"><code>setTransformPoint</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>transformPointFunction</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/src_DistortElement.js.html#l149"><code>src\DistortElement.js:149</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Will override how a point is transformed. Pass in a function that receives a p5.Vector and return a different p5.Vector.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">transformPointFunction</code>
+                        <span class="type">Function</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_transformPoint" class="method item">
+    <h3 class="name"><code>transformPoint</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>element</code>
+                </li>
+                <li class="arg">
+                        <code>point</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/src_DistortElement.js.html#l136"><code>src\DistortElement.js:136</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>This is a default transform point function but another one can be set using the setTransformPoint() method.
+Return a new p5.Vector as not to effect the current state of the points being passed as a parameter.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">element</code>
+                        <span class="type"><a href="../classes/DistortElement.html" class="crosslink">DistortElement</a></span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">point</code>
+                        <span class="type">p5.Vector</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_update" class="method item">
+    <h3 class="name"><code>update</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/src_DistortElement.js.html#l72"><code>src\DistortElement.js:72</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Method that will update all variables necessary to advance the frame.</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_updateOffset" class="method item">
+    <h3 class="name"><code>updateOffset</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/src_DistortElement.js.html#l63"><code>src\DistortElement.js:63</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Will update the offset to account for the current frame.</p>
+
+    </div>
+
+
+
+
+</div>
+            </div>
+
+
+
+    </div>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

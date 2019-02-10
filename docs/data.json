@@ -1,0 +1,611 @@
+{
+    "project": {
+        "name": "p5.distort",
+        "description": "A p5.js library for easy vertex manipulation.",
+        "version": "0.0.1",
+        "url": "https://figraham.github.io/p5.distort/index.html"
+    },
+    "files": {
+        "src\\DistortCircle.js": {
+            "name": "src\\DistortCircle.js",
+            "modules": {
+                "elements-primitives": 1
+            },
+            "classes": {
+                "DistortCircle": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src\\DistortController.js": {
+            "name": "src\\DistortController.js",
+            "modules": {
+                "controller": 1
+            },
+            "classes": {
+                "Distort": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src\\DistortElement.js": {
+            "name": "src\\DistortElement.js",
+            "modules": {
+                "elements-abstract": 1
+            },
+            "classes": {
+                "DistortElement": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src\\DistortString.js": {
+            "name": "src\\DistortString.js",
+            "modules": {
+                "elements-text": 1
+            },
+            "classes": {
+                "DistortString": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {
+        "elements": {
+            "name": "elements",
+            "submodules": {
+                "elements-primitives": 1,
+                "elements-abstract": 1,
+                "elements-text": 1
+            },
+            "elements": {},
+            "classes": {
+                "DistortCircle": 1,
+                "DistortElement": 1,
+                "DistortString": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "file": "src\\DistortString.js",
+            "line": 1
+        },
+        "elements-primitives": {
+            "name": "elements-primitives",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "DistortCircle": 1
+            },
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "elements",
+            "namespace": "",
+            "file": "src\\DistortCircle.js",
+            "line": 1
+        },
+        "controller": {
+            "name": "controller",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "Distort": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "src\\DistortController.js",
+            "line": 1,
+            "description": "Creates a Distort controller. Keeps track of frames and the distort factor.\nAlso provides a streamlined way to render all elements associated with the controller."
+        },
+        "elements-abstract": {
+            "name": "elements-abstract",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "DistortElement": 1
+            },
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "elements",
+            "namespace": "",
+            "file": "src\\DistortElement.js",
+            "line": 1,
+            "description": "Creates a distort element. This constructor is not meant to be called directly.\nShould be called as super() by a class that extends DistortElement."
+        },
+        "elements-text": {
+            "name": "elements-text",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "DistortString": 1
+            },
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "elements",
+            "namespace": "",
+            "file": "src\\DistortString.js",
+            "line": 1,
+            "description": "Creates a DistortElement from a string of text."
+        }
+    },
+    "classes": {
+        "DistortCircle": {
+            "name": "DistortCircle",
+            "shortname": "DistortCircle",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "elements",
+            "submodule": "elements-primitives",
+            "namespace": "",
+            "file": "src\\DistortCircle.js",
+            "line": 1
+        },
+        "Distort": {
+            "name": "Distort",
+            "shortname": "Distort",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "controller",
+            "namespace": "",
+            "file": "src\\DistortController.js",
+            "line": 1,
+            "description": "Creates a Distort controller. Keeps track of frames and the distort factor.\nAlso provides a streamlined way to render all elements associated with the controller."
+        },
+        "DistortElement": {
+            "name": "DistortElement",
+            "shortname": "DistortElement",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "elements",
+            "submodule": "elements-abstract",
+            "namespace": "",
+            "file": "src\\DistortElement.js",
+            "line": 1,
+            "description": "Creates a distort element. This constructor is not meant to be called directly.\nShould be called as super() by a class that extends DistortElement."
+        },
+        "DistortString": {
+            "name": "DistortString",
+            "shortname": "DistortString",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "elements",
+            "submodule": "elements-text",
+            "namespace": "",
+            "file": "src\\DistortString.js",
+            "line": 1,
+            "description": "Creates a DistortElement from a string of text."
+        }
+    },
+    "elements": {},
+    "classitems": [
+        {
+            "file": "src\\DistortCircle.js",
+            "line": 8,
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "controller",
+                    "description": "",
+                    "type": "Distort"
+                },
+                {
+                    "name": "position",
+                    "description": "",
+                    "type": "p5.Vector"
+                },
+                {
+                    "name": "size",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "detail",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "class": "DistortCircle",
+            "module": "elements",
+            "submodule": "elements-primitives"
+        },
+        {
+            "file": "src\\DistortCircle.js",
+            "line": 20,
+            "description": "Will generate points for this element in a circle shape. Detail defines how many points are generated.",
+            "itemtype": "method",
+            "name": "generatePoints",
+            "params": [
+                {
+                    "name": "detail",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "class": "DistortCircle",
+            "module": "elements",
+            "submodule": "elements-primitives"
+        },
+        {
+            "file": "src\\DistortCircle.js",
+            "line": 37,
+            "description": "Returns the radius of the circle.",
+            "itemtype": "method",
+            "name": "radius",
+            "class": "DistortCircle",
+            "module": "elements",
+            "submodule": "elements-primitives"
+        },
+        {
+            "file": "src\\DistortController.js",
+            "line": 10,
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "distortFactor",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "framesPerCycle",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "class": "Distort",
+            "module": "controller"
+        },
+        {
+            "file": "src\\DistortController.js",
+            "line": 22,
+            "description": "Adds an element to the controller. Calling this method directly may result in problems.\nThis will be done automatically when a DistortElement is created.\nIf an Element is already been created it's controller should be changed using the changeController() method in DistortElement.",
+            "itemtype": "method",
+            "name": "addElement",
+            "params": [
+                {
+                    "name": "element",
+                    "description": "",
+                    "type": "DistortElement"
+                }
+            ],
+            "class": "Distort",
+            "module": "controller"
+        },
+        {
+            "file": "src\\DistortController.js",
+            "line": 34,
+            "description": "Will update frame and all DistortElements under the controller.",
+            "itemtype": "method",
+            "name": "update",
+            "class": "Distort",
+            "module": "controller"
+        },
+        {
+            "file": "src\\DistortController.js",
+            "line": 46,
+            "description": "Renders all DistortElements under this controller.",
+            "itemtype": "method",
+            "name": "render",
+            "class": "Distort",
+            "module": "controller"
+        },
+        {
+            "file": "src\\DistortElement.js",
+            "line": 11,
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "controller",
+                    "description": "",
+                    "type": "Distort"
+                },
+                {
+                    "name": "position",
+                    "description": "",
+                    "type": "p5.Vector"
+                },
+                {
+                    "name": "size",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "class": "DistortElement",
+            "module": "elements",
+            "submodule": "elements-abstract"
+        },
+        {
+            "file": "src\\DistortElement.js",
+            "line": 28,
+            "description": "Will set the controller for this element while adding the element to the array of elements within the controller.",
+            "itemtype": "method",
+            "name": "setController",
+            "params": [
+                {
+                    "name": "controller",
+                    "description": "",
+                    "type": "Distort"
+                }
+            ],
+            "class": "DistortElement",
+            "module": "elements",
+            "submodule": "elements-abstract"
+        },
+        {
+            "file": "src\\DistortElement.js",
+            "line": 39,
+            "description": "Used to change the controller after an element is created.\nThe same as setController() just removes the element from the current controller to avoid unexpected behavior.",
+            "itemtype": "method",
+            "name": "changeController",
+            "params": [
+                {
+                    "name": "controller",
+                    "description": "",
+                    "type": "Distort"
+                }
+            ],
+            "class": "DistortElement",
+            "module": "elements",
+            "submodule": "elements-abstract"
+        },
+        {
+            "file": "src\\DistortElement.js",
+            "line": 56,
+            "itemtype": "method",
+            "name": "sectionSize",
+            "class": "DistortElement",
+            "module": "elements",
+            "submodule": "elements-abstract"
+        },
+        {
+            "file": "src\\DistortElement.js",
+            "line": 63,
+            "description": "Will update the offset to account for the current frame.",
+            "itemtype": "method",
+            "name": "updateOffset",
+            "class": "DistortElement",
+            "module": "elements",
+            "submodule": "elements-abstract"
+        },
+        {
+            "file": "src\\DistortElement.js",
+            "line": 72,
+            "description": "Method that will update all variables necessary to advance the frame.",
+            "itemtype": "method",
+            "name": "update",
+            "class": "DistortElement",
+            "module": "elements",
+            "submodule": "elements-abstract"
+        },
+        {
+            "file": "src\\DistortElement.js",
+            "line": 81,
+            "description": "In it's current state this will render an element to a p5 canvas transforming the points to distort the shape.",
+            "itemtype": "method",
+            "name": "render",
+            "class": "DistortElement",
+            "module": "elements",
+            "submodule": "elements-abstract"
+        },
+        {
+            "file": "src\\DistortElement.js",
+            "line": 105,
+            "description": "Helper method for the transformPoint() method. Separate so it can be overridden or used in an overridden transformPoint() method.",
+            "itemtype": "method",
+            "name": "calculateProgress",
+            "params": [
+                {
+                    "name": "point",
+                    "description": "",
+                    "type": "p5.Vector"
+                }
+            ],
+            "class": "DistortElement",
+            "module": "elements",
+            "submodule": "elements-abstract"
+        },
+        {
+            "file": "src\\DistortElement.js",
+            "line": 115,
+            "description": "The default black and white drawing traits for all elements. Can be overridden using the setDrawingTraits() method.",
+            "itemtype": "method",
+            "name": "drawingTraits",
+            "class": "DistortElement",
+            "module": "elements",
+            "submodule": "elements-abstract"
+        },
+        {
+            "file": "src\\DistortElement.js",
+            "line": 125,
+            "description": "Takes one function as a parameter. The passed function should have no parameters and use set the stroke and fill.\nIt will be called at the beginning of the render() method.",
+            "itemtype": "method",
+            "name": "setDrawingTraits",
+            "params": [
+                {
+                    "name": "drawingTraitsFunction",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "class": "DistortElement",
+            "module": "elements",
+            "submodule": "elements-abstract"
+        },
+        {
+            "file": "src\\DistortElement.js",
+            "line": 136,
+            "description": "This is a default transform point function but another one can be set using the setTransformPoint() method.\nReturn a new p5.Vector as not to effect the current state of the points being passed as a parameter.",
+            "itemtype": "method",
+            "name": "transformPoint",
+            "params": [
+                {
+                    "name": "element",
+                    "description": "",
+                    "type": "DistortElement"
+                },
+                {
+                    "name": "point",
+                    "description": "",
+                    "type": "p5.Vector"
+                }
+            ],
+            "class": "DistortElement",
+            "module": "elements",
+            "submodule": "elements-abstract"
+        },
+        {
+            "file": "src\\DistortElement.js",
+            "line": 149,
+            "description": "Will override how a point is transformed. Pass in a function that receives a p5.Vector and return a different p5.Vector.",
+            "itemtype": "method",
+            "name": "setTransformPoint",
+            "params": [
+                {
+                    "name": "transformPointFunction",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "class": "DistortElement",
+            "module": "elements",
+            "submodule": "elements-abstract"
+        },
+        {
+            "file": "src\\DistortElement.js",
+            "line": 159,
+            "description": "Will return a size that accounts for the distortFactor.",
+            "itemtype": "method",
+            "name": "scaledSize",
+            "class": "DistortElement",
+            "module": "elements",
+            "submodule": "elements-abstract"
+        },
+        {
+            "file": "src\\DistortElement.js",
+            "line": 168,
+            "description": "Will change the position of an element that has already been created.",
+            "itemtype": "method",
+            "name": "setPosition",
+            "params": [
+                {
+                    "name": "position",
+                    "description": "",
+                    "type": "p5.Vector"
+                }
+            ],
+            "class": "DistortElement",
+            "module": "elements",
+            "submodule": "elements-abstract"
+        },
+        {
+            "file": "src\\DistortString.js",
+            "line": 10,
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "controller",
+                    "description": "",
+                    "type": "Distort"
+                },
+                {
+                    "name": "position",
+                    "description": "",
+                    "type": "p5.Vector"
+                },
+                {
+                    "name": "size",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "font",
+                    "description": "",
+                    "type": "p5.Font"
+                },
+                {
+                    "name": "string",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "class": "DistortString",
+            "module": "elements",
+            "submodule": "elements-text"
+        },
+        {
+            "file": "src\\DistortString.js",
+            "line": 31,
+            "description": "Will generate points from the string and separates the different shapes required to draw text.",
+            "itemtype": "method",
+            "name": "generatePoints",
+            "class": "DistortString",
+            "module": "elements",
+            "submodule": "elements-text"
+        },
+        {
+            "file": "src\\DistortString.js",
+            "line": 64,
+            "description": "Helper method that returns a boolean if point at an index should be in a different shape.",
+            "itemtype": "method",
+            "name": "differentShape",
+            "params": [
+                {
+                    "name": "points",
+                    "description": "",
+                    "type": "p5.Vector[]"
+                },
+                {
+                    "name": "pointIndex",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "class": "DistortString",
+            "module": "elements",
+            "submodule": "elements-text"
+        },
+        {
+            "file": "src\\DistortString.js",
+            "line": 80,
+            "description": "A method that will generate text bounds for use in positioning text correctly.",
+            "itemtype": "method",
+            "name": "generateBounds",
+            "class": "DistortString",
+            "module": "elements",
+            "submodule": "elements-text"
+        }
+    ],
+    "warnings": [
+        {
+            "message": "Missing item type",
+            "line": " src\\DistortCircle.js:8"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\DistortController.js:10"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\DistortElement.js:11"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\DistortString.js:10"
+        }
+    ]
+}
