@@ -1,11 +1,15 @@
+/**
+ * Creates a distort element. This constructor is not meant to be called directly.
+ * Should be called as super() by a class that extends DistortElement.
+ * 
+ * @module elements
+ * @submodule elements-abstract
+ * @class DistortElement
+ */
 class DistortElement {
 
   /**
-   * Constructor
-   * 
-   * Creates a distort element. This constructor is not meant to be called directly.
-   * Should be called as super() by a class that extends DistortElement.
-   * 
+   * @constructor
    * @param {Distort} controller 
    * @param {p5.Vector} position 
    * @param {Number} size 
@@ -22,10 +26,9 @@ class DistortElement {
   }
 
   /**
-   * Set Controller
-   * 
    * Will set the controller for this element while adding the element to the array of elements within the controller.
    * 
+   * @method setController
    * @param {Distort} controller 
    */
   setController(controller) {
@@ -34,11 +37,10 @@ class DistortElement {
   }
 
   /**
-   * Change Controller
-   * 
    * Used to change the controller after an element is created.
    * The same as setController() just removes the element from the current controller to avoid unexpected behavior.
    * 
+   * @method changeController
    * @param {Distort} controller 
    */
   changeController(controller) {
@@ -50,37 +52,36 @@ class DistortElement {
     this.setController(controller);
   }
 
+  // TODO change this method
   /**
-   * Section Size
-   * 
-   * TODO change this
+   * @method sectionSize
    */
   sectionSize() {
     return this.size / 3.0;
   }
 
   /**
-   * Update Offset
-   * 
    * Will update the offset to account for the current frame.
+   * 
+   * @method updateOffset
    */
   updateOffset() {
     this.offset = map(this.controller.currentFrame, 0, this.controller.framesPerCycle, 0, this.sectionSize());
   }
 
   /**
-   * Update
-   * 
    * Method that will update all variables necessary to advance the frame.
+   * 
+   * @method update
    */
   update() {
     this.updateOffset();
   }
 
   /**
-   * Render
-   * 
    * In it's current state this will render an element to a p5 canvas transforming the points to distort the shape.
+   * 
+   * @method render
    */
   render() {
     this.drawingTraits();
@@ -102,20 +103,19 @@ class DistortElement {
   }
 
   /**
-   * Calculate Progress
-   * 
    * Helper method for the transformPoint() method. Separate so it can be overridden or used in an overridden transformPoint() method.
    * 
-   * @param {p5.Vector} point 
+   * @method calculateProgress
+   * @param {p5.Vector} point
    */
   calculateProgress(point) {
     return map(point.x + this.offset % this.sectionSize(), 0, this.sectionSize(), 0, TWO_PI)
   }
 
   /**
-   * Drawing Traits
-   * 
    * The default black and white drawing traits for all elements. Can be overridden using the setDrawingTraits() method.
+   * 
+   * @method drawingTraits
    */
   drawingTraits() {
     noStroke();
@@ -123,11 +123,10 @@ class DistortElement {
   }
 
   /**
-   * Set Drawing Traits
-   * 
    * Takes one function as a parameter. The passed function should have no parameters and use set the stroke and fill.
    * It will be called at the beginning of the render() method.
    * 
+   * @method setDrawingTraits 
    * @param {function} drawingTraitsFunction 
    */
   setDrawingTraits(drawingTraitsFunction) {
@@ -135,11 +134,10 @@ class DistortElement {
   }
 
   /**
-   * Transform Point
-   * 
    * This is a default transform point function but another one can be set using the setTransformPoint() method.
    * Return a new p5.Vector as not to effect the current state of the points being passed as a parameter.
    * 
+   * @method transformPoint
    * @param {DistortElement} element
    * @param {p5.Vector} point 
    */
@@ -149,10 +147,9 @@ class DistortElement {
   }
 
   /**
-   * Set Transform Point
-   * 
    * Will override how a point is transformed. Pass in a function that receives a p5.Vector and return a different p5.Vector.
    * 
+   * @method setTransformPoint
    * @param {function} transformPointFunction 
    */
   setTransformPoint(transformPointFunction) {
@@ -160,19 +157,18 @@ class DistortElement {
   }
 
   /**
-   * Scaled Size
-   * 
    * Will return a size that accounts for the distortFactor.
+   * 
+   * @method scaledSize
    */
   scaledSize() {
     return this.size - 2 * (this.size / this.controller.distortFactor);
   }
 
   /**
-   * Set Position
-   * 
    * Will change the position of an element that has already been created.
    * 
+   * @method setPosition
    * @param {p5.Vector} position 
    */
   setPosition(position) {
