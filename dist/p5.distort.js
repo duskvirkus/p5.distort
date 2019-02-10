@@ -146,7 +146,7 @@ class DistortElement {
       }
       for (let j = 0; j < this.pointGroups[i].length; j++) {
         let p = this.pointGroups[i][j];
-        p = this.transformPoint(p);
+        p = this.transformPoint(this, p);
         vertex(p.x, p.y);
       }
       if (i != 0) {
@@ -195,11 +195,12 @@ class DistortElement {
    * This is a default transform point function but another one can be set using the setTransformPoint() method.
    * Return a new p5.Vector as not to effect the current state of the points being passed as a parameter.
    * 
+   * @param {DistortElement} element
    * @param {p5.Vector} point 
    */
-  transformPoint(point) {
-    let progress = this.calculateProgress(point);
-    return createVector(point.x, point.y + map(sin(progress), -1, 1, - this.size / this.controller.distortFactor, this.size / this.controller.distortFactor));
+  transformPoint(element, point) {
+    let progress = element.calculateProgress(point);
+    return createVector(point.x, point.y + map(sin(progress), -1, 1, - element.size / element.controller.distortFactor, element.size / element.controller.distortFactor));
   }
 
   /**
@@ -213,10 +214,22 @@ class DistortElement {
     this.transformPoint = transformPointFunction;
   }
 
+  /**
+   * Scaled Size
+   * 
+   * Will return a size that accounts for the distortFactor.
+   */
   scaledSize() {
     return this.size - 2 * (this.size / this.controller.distortFactor);
   }
 
+  /**
+   * Set Position
+   * 
+   * Will change the position of an element that has already been created.
+   * 
+   * @param {p5.Vector} position 
+   */
   setPosition(position) {
     let difference = createVector(this.position.x - position.x, this.position.y - position.y);
     let newPointGroups = [];
