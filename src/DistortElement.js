@@ -91,7 +91,7 @@ class DistortElement {
       }
       for (let j = 0; j < this.pointGroups[i].length; j++) {
         let p = this.pointGroups[i][j];
-        p = this.transformPoint(p);
+        p = this.transformPoint(this, p);
         vertex(p.x, p.y);
       }
       if (i != 0) {
@@ -142,9 +142,9 @@ class DistortElement {
    * 
    * @param {p5.Vector} point 
    */
-  transformPoint(point) {
-    let progress = this.calculateProgress(point);
-    return createVector(point.x, point.y + map(sin(progress), -1, 1, - this.size / this.controller.distortFactor, this.size / this.controller.distortFactor));
+  transformPoint(element, point) { // TODO improve the element
+    let progress = element.calculateProgress(point);
+    return createVector(point.x, point.y + map(sin(progress), -1, 1, - element.size / element.controller.distortFactor, element.size / element.controller.distortFactor));
   }
 
   /**
@@ -156,6 +156,7 @@ class DistortElement {
    */
   setTransformPoint(transformPointFunction) {
     this.transformPoint = transformPointFunction;
+    this.transformPoint = this.transformPoint.bind(this);
   }
 
   scaledSize() {
