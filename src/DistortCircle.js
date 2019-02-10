@@ -1,8 +1,12 @@
+/**
+ * @module elements
+ * @submodule primitives
+ * @class DistortCircle
+ */
 class DistortCircle extends DistortElement {
 
   /**
-   * Constructor
-   * 
+   * @constructor
    * @param {Distort} controller 
    * @param {p5.Vector} position 
    * @param {Number} size 
@@ -14,10 +18,9 @@ class DistortCircle extends DistortElement {
   }
 
   /**
-   * Generate Points
-   * 
    * Will generate points for this element in a circle shape. Detail defines how many points are generated.
    * 
+   * @method generatePoints
    * @param {Number} detail 
    */
   generatePoints(detail) {
@@ -32,9 +35,9 @@ class DistortCircle extends DistortElement {
   }
 
   /**
-   * Radius
-   * 
    * Returns the radius of the circle.
+   * 
+   * @method radius
    */
   radius() {
     return this.scaledSize() / 2;
