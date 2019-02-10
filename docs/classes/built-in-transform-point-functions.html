@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>DistortString - p5.distort</title>
+    <title>built-in-transform-point-functions - p5.distort</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -86,23 +86,21 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1>DistortString Class</h1>
+<h1>built-in-transform-point-functions Class</h1>
 <div class="box meta">
 
 
         <div class="foundat">
-            Defined in: <a href="../files/src_DistortString.js.html#l1"><code>src\DistortString.js:1</code></a>
+            Defined in: <a href="../files/src_TransformPointBuiltIn.js.html#l1"><code>src\TransformPointBuiltIn.js:1</code></a>
         </div>
 
-            Module: <a href="../modules/elements-text.html">elements-text</a><br>
-            Parent Module: <a href="../modules/elements.html">elements</a>
+            Module: <a href="../modules/tranform-point-functions.html">tranform-point-functions</a>
 
 </div>
 
 
 <div class="box intro">
-    <p>Creates a DistortElement from a string of text.</p>
-
+    
 </div>
 
 
@@ -110,169 +108,81 @@
     <ul class="api-class-tabs">
         <li class="api-class-tab index"><a href="#index">Index</a></li>
 
-            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
+            <li class="api-class-tab properties"><a href="#properties">Properties</a></li>
     </ul>
 
     <div>
         <div id="index" class="api-class-tabpanel index">
             <h2 class="off-left">Item Index</h2>
 
-                <div class="index-section methods">
-                    <h3>Methods</h3>
 
-                    <ul class="index-list methods">
-                            <li class="index-item method">
-                                <a href="#method_differentShape">differentShape</a>
+                <div class="index-section properties">
+                    <h3>Properties</h3>
 
-                            </li>
-                            <li class="index-item method">
-                                <a href="#method_generateBounds">generateBounds</a>
-
-                            </li>
-                            <li class="index-item method">
-                                <a href="#method_generatePoints">generatePoints</a>
+                    <ul class="index-list properties">
+                            <li class="index-item property">
+                                <a href="#property_PERLIN_NOISE">PERLIN_NOISE</a>
 
                             </li>
                     </ul>
                 </div>
 
 
-
-        </div>
-
-            <div id="methods" class="api-class-tabpanel">
-                <h2 class="off-left">Methods</h2>
-
-<div id="method_differentShape" class="method item">
-    <h3 class="name"><code>differentShape</code></h3>
-
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-                <li class="arg">
-                        <code>points</code>
-                </li>
-                <li class="arg">
-                        <code>pointIndex</code>
-                </li>
-            </ul><span class="paren">)</span>
         </div>
 
 
+            <div id="properties" class="api-class-tabpanel">
+                <h2 class="off-left">Properties</h2>
+
+<div id="property_PERLIN_NOISE" class="property item">
+    <h3 class="name"><code>PERLIN_NOISE</code></h3>
+    <span class="type">Unknown</span>
 
 
 
-
+        <span class="flag final">final</span>
 
 
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_DistortString.js.html#l65"><code>src\DistortString.js:65</code></a>
+        <a href="../files/src_TransformPointBuiltIn.js.html#l7"><code>src\TransformPointBuiltIn.js:7</code></a>
         </p>
-
 
 
     </div>
 
     <div class="description">
-        <p>Helper method that returns a boolean if point at an index should be in a different shape.</p>
-
-    </div>
-
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-                <li class="param">
-                        <code class="param-name">points</code>
-                        <span class="type">p5.Vector</span>
-
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                </li>
-                <li class="param">
-                        <code class="param-name">pointIndex</code>
-                        <span class="type">Number</span>
-
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                </li>
-            </ul>
-        </div>
-
-
-
-</div>
-<div id="method_generateBounds" class="method item">
-    <h3 class="name"><code>generateBounds</code></h3>
-
-        <span class="paren">()</span>
-
-
-
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/src_DistortString.js.html#l81"><code>src\DistortString.js:81</code></a>
-        </p>
-
-
-
-    </div>
-
-    <div class="description">
-        <p>A method that will generate text bounds for use in positioning text correctly.</p>
+        <p>Will transform a point based on perlin noise in both the x and y direction.</p>
 
     </div>
 
 
 
+        <h4>Sub-properties:</h4>
 
-</div>
-<div id="method_generatePoints" class="method item">
-    <h3 class="name"><code>generatePoints</code></h3>
+        <ul class="params-list">
+            <li class="param">
+                    <code class="param-name">element</code>
+                    <span class="type"><a href="../classes/DistortElement.html" class="crosslink">DistortElement</a></span>
 
-        <span class="paren">()</span>
+                <div class="param-description">
+                     
+                </div>
 
+            </li>
+            <li class="param">
+                    <code class="param-name">point</code>
+                    <span class="type">p5.Vector</span>
 
+                <div class="param-description">
+                     
+                </div>
 
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/src_DistortString.js.html#l32"><code>src\DistortString.js:32</code></a>
-        </p>
-
-
-
-    </div>
-
-    <div class="description">
-        <p>Will generate points from the string and separates the different shapes required to draw text.</p>
-
-    </div>
-
-
-
-
+            </li>
+        </ul>
 </div>
             </div>
-
 
 
     </div>

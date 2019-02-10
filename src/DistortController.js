@@ -20,6 +20,15 @@ class Distort {
   }
 
   /**
+   * Returns a float value between 0 and 1 that represents the current location in the frameCycle.
+   * 
+   * @method currentTime
+   */
+  currentTime() {
+    return map(this.currentFrame, 0, this.framesPerCycle, 0, 1);
+  }
+
+  /**
    * Adds an element to the controller. Calling this method directly may result in problems.
    * This will be done automatically when a DistortElement is created.
    * If an Element is already been created it's controller should be changed using the changeController() method in DistortElement.
@@ -52,6 +61,15 @@ class Distort {
     for (let i = 0; i < this.elements.length; i++) {
       this.elements[i].render();
     }
+  }
+
+  /**
+   * Scales a value to account for the distortFactor.
+   * 
+   * @param {Number} value 
+   */
+  scaleValue(value) {
+    return value - 2 * (value / this.distortFactor);
   }
 
 }

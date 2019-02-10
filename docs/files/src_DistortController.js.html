@@ -38,9 +38,10 @@
                 
                         <div id="api-tabview-panel">
                             <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/built-in-transform-point-functions.html">built-in-transform-point-functions</a></li>
                                 <li><a href="../classes/Distort.html">Distort</a></li>
-                                <li><a href="../classes/DistortCircle.html">DistortCircle</a></li>
                                 <li><a href="../classes/DistortElement.html">DistortElement</a></li>
+                                <li><a href="../classes/DistortEllipse.html">DistortEllipse</a></li>
                                 <li><a href="../classes/DistortString.html">DistortString</a></li>
                             </ul>
                 
@@ -51,6 +52,7 @@
                                 <li><a href="../modules/elements-abstract.html">elements-abstract</a></li>
                                 <li><a href="../modules/elements-primitives.html">elements-primitives</a></li>
                                 <li><a href="../modules/elements-text.html">elements-text</a></li>
+                                <li><a href="../modules/tranform-point-functions.html">tranform-point-functions</a></li>
                             </ul>
                         </div>
                     </div>
@@ -110,6 +112,15 @@ class Distort {
   }
 
   /**
+   * Returns a float value between 0 and 1 that represents the current location in the frameCycle.
+   * 
+   * @method currentTime
+   */
+  currentTime() {
+    return map(this.currentFrame, 0, this.framesPerCycle, 0, 1);
+  }
+
+  /**
    * Adds an element to the controller. Calling this method directly may result in problems.
    * This will be done automatically when a DistortElement is created.
    * If an Element is already been created it&#x27;s controller should be changed using the changeController() method in DistortElement.
@@ -142,6 +153,15 @@ class Distort {
     for (let i = 0; i &lt; this.elements.length; i++) {
       this.elements[i].render();
     }
+  }
+
+  /**
+   * Scales a value to account for the distortFactor.
+   * 
+   * @param {Number} value 
+   */
+  scaleValue(value) {
+    return value - 2 * (value / this.distortFactor);
   }
 
 }

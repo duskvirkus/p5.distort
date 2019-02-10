@@ -2,16 +2,18 @@ YUI.add("yuidoc-meta", function(Y) {
    Y.YUIDoc = { meta: {
     "classes": [
         "Distort",
-        "DistortCircle",
         "DistortElement",
-        "DistortString"
+        "DistortEllipse",
+        "DistortString",
+        "built-in-transform-point-functions"
     ],
     "modules": [
         "controller",
         "elements",
         "elements-abstract",
         "elements-primitives",
-        "elements-text"
+        "elements-text",
+        "tranform-point-functions"
     ],
     "allModules": [
         {
@@ -36,6 +38,10 @@ YUI.add("yuidoc-meta", function(Y) {
             "displayName": "elements-text",
             "name": "elements-text",
             "description": "Creates a DistortElement from a string of text."
+        },
+        {
+            "displayName": "tranform-point-functions",
+            "name": "tranform-point-functions"
         }
     ],
     "elements": []

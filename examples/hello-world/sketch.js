@@ -13,7 +13,8 @@ function setup() {
   frameRate(30);
   distort = new Distort(32, 30);
 
-  helloWorld = new DistortString(distort, createVector(width / 2, height / 2), 50, font, "Hello World");
+  helloWorld = new DistortString(distort, createVector(width / 2, height / 2), font, "Hello World", height / 3);
+  helloWorld.setTransformPoint(PERLIN_NOISE);
 }
 
 function draw() {

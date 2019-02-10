@@ -38,9 +38,10 @@
                 
                         <div id="api-tabview-panel">
                             <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/built-in-transform-point-functions.html">built-in-transform-point-functions</a></li>
                                 <li><a href="../classes/Distort.html">Distort</a></li>
-                                <li><a href="../classes/DistortCircle.html">DistortCircle</a></li>
                                 <li><a href="../classes/DistortElement.html">DistortElement</a></li>
+                                <li><a href="../classes/DistortEllipse.html">DistortEllipse</a></li>
                                 <li><a href="../classes/DistortString.html">DistortString</a></li>
                             </ul>
                 
@@ -51,6 +52,7 @@
                                 <li><a href="../modules/elements-abstract.html">elements-abstract</a></li>
                                 <li><a href="../modules/elements-primitives.html">elements-primitives</a></li>
                                 <li><a href="../modules/elements-text.html">elements-text</a></li>
+                                <li><a href="../modules/tranform-point-functions.html">tranform-point-functions</a></li>
                             </ul>
                         </div>
                     </div>
@@ -105,10 +107,11 @@ class DistortString extends DistortElement {
    * @param {p5.Font} font 
    * @param {String} string 
    */
-  constructor(controller, position, size, font, string) {
+  constructor(controller, position, font, string, size) {
     super(controller, position, size);
     this.font = font;
     this.string = string;
+    this.size = size;
 
     this.distanceThreshold = 3;
 
@@ -128,7 +131,7 @@ class DistortString extends DistortElement {
       this.string,
       (this.position.x - this.bounds.w / 2) - this.bounds.advance,
       this.position.y + this.bounds.h / 2,
-      this.scaledSize(),
+      this.getSize(),
       {
         sampleFactor: 1,
         simplifyThreshold: 0,
@@ -173,8 +176,15 @@ class DistortString extends DistortElement {
    * @method generateBounds
    */
   generateBounds() {
-    this.bounds = this.font.textBounds(this.string, this.position.x, this.position.y, this.scaledSize());
+    this.bounds = this.font.textBounds(this.string, this.position.x, this.position.y, this.getSize());
     this.position = createVector(this.position.x - ((this.bounds.x) / 2), this.position.y - (this.bounds.y / 2));
+  }
+
+  /**
+   * 
+   */
+  getSize() {
+    return this.controller.scaleValue(this.size);
   }
 
 }

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>DistortString - p5.distort</title>
+    <title>src\DistortEllipse.js - p5.distort</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -86,196 +86,69 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1>DistortString Class</h1>
-<div class="box meta">
-
-
-        <div class="foundat">
-            Defined in: <a href="../files/src_DistortString.js.html#l1"><code>src\DistortString.js:1</code></a>
-        </div>
-
-            Module: <a href="../modules/elements-text.html">elements-text</a><br>
-            Parent Module: <a href="../modules/elements.html">elements</a>
-
-</div>
-
-
-<div class="box intro">
-    <p>Creates a DistortElement from a string of text.</p>
-
-</div>
-
-
-<div id="classdocs" class="tabview">
-    <ul class="api-class-tabs">
-        <li class="api-class-tab index"><a href="#index">Index</a></li>
-
-            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
-    </ul>
-
-    <div>
-        <div id="index" class="api-class-tabpanel index">
-            <h2 class="off-left">Item Index</h2>
-
-                <div class="index-section methods">
-                    <h3>Methods</h3>
-
-                    <ul class="index-list methods">
-                            <li class="index-item method">
-                                <a href="#method_differentShape">differentShape</a>
-
-                            </li>
-                            <li class="index-item method">
-                                <a href="#method_generateBounds">generateBounds</a>
-
-                            </li>
-                            <li class="index-item method">
-                                <a href="#method_generatePoints">generatePoints</a>
-
-                            </li>
-                    </ul>
-                </div>
-
-
-
-        </div>
-
-            <div id="methods" class="api-class-tabpanel">
-                <h2 class="off-left">Methods</h2>
-
-<div id="method_differentShape" class="method item">
-    <h3 class="name"><code>differentShape</code></h3>
-
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-                <li class="arg">
-                        <code>points</code>
-                </li>
-                <li class="arg">
-                        <code>pointIndex</code>
-                </li>
-            </ul><span class="paren">)</span>
-        </div>
-
-
-
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/src_DistortString.js.html#l65"><code>src\DistortString.js:65</code></a>
-        </p>
-
-
-
-    </div>
-
-    <div class="description">
-        <p>Helper method that returns a boolean if point at an index should be in a different shape.</p>
-
-    </div>
-
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-                <li class="param">
-                        <code class="param-name">points</code>
-                        <span class="type">p5.Vector</span>
-
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                </li>
-                <li class="param">
-                        <code class="param-name">pointIndex</code>
-                        <span class="type">Number</span>
-
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                </li>
-            </ul>
-        </div>
-
-
-
-</div>
-<div id="method_generateBounds" class="method item">
-    <h3 class="name"><code>generateBounds</code></h3>
-
-        <span class="paren">()</span>
-
-
-
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/src_DistortString.js.html#l81"><code>src\DistortString.js:81</code></a>
-        </p>
-
-
-
-    </div>
-
-    <div class="description">
-        <p>A method that will generate text bounds for use in positioning text correctly.</p>
-
-    </div>
-
-
-
-
-</div>
-<div id="method_generatePoints" class="method item">
-    <h3 class="name"><code>generatePoints</code></h3>
-
-        <span class="paren">()</span>
-
-
-
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/src_DistortString.js.html#l32"><code>src\DistortString.js:32</code></a>
-        </p>
-
-
-
-    </div>
-
-    <div class="description">
-        <p>Will generate points from the string and separates the different shapes required to draw text.</p>
-
-    </div>
-
-
-
-
-</div>
-            </div>
-
-
-
-    </div>
+<h1 class="file-heading">File: src\DistortEllipse.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+/**
+ * @module elements
+ * @submodule elements-primitives
+ * @class DistortEllipse
+ */
+class DistortEllipse extends DistortElement {
+
+  /**
+   * @constructor
+   * @param {Distort} controller 
+   * @param {p5.Vector} position 
+   * @param {Number} width
+   * @param {Number} height
+   * @param {Number} detail 
+   */
+  constructor(controller, position, width, height, detail) {
+    super(controller, position);
+    this.width = width;
+    this.height = height;
+    this.generatePoints(detail);
+  }
+
+  /**
+   * Will generate points for this element in a circle shape. Detail defines how many points are generated.
+   * 
+   * @method generatePoints
+   * @param {Number} detail 
+   */
+  generatePoints(detail) {
+    let points = [];
+    for (let i = 0; i &lt; detail; i++) {
+      let angle = map(i, 0, detail, 0, TWO_PI);
+      let x = this.getWidth() / 2 * cos(angle);
+      let y = this.getHeight() / 2 * sin(angle);
+      points.push(createVector(x + this.position.x, y + this.position.y));
+    }
+    this.pointGroups.push(points);
+  }
+
+  /**
+   * Returns width accounting for distortFactor.
+   * 
+   * @method getWidth
+   */
+  getWidth() {
+    return this.controller.scaleValue(this.width);
+  }
+
+  /**
+   * Returns width accounting for distortFactor.
+   * 
+   * @method getHeight
+   */
+  getHeight() {
+    return this.controller.scaleValue(this.height);
+  }
+
+}
+    </pre>
 </div>
                     </div>
                 </div>

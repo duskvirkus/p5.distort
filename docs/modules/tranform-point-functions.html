@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src\DistortCircle.js - p5.distort</title>
+    <title>tranform-point-functions - p5.distort</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -38,9 +38,10 @@
                 
                         <div id="api-tabview-panel">
                             <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/built-in-transform-point-functions.html">built-in-transform-point-functions</a></li>
                                 <li><a href="../classes/Distort.html">Distort</a></li>
-                                <li><a href="../classes/DistortCircle.html">DistortCircle</a></li>
                                 <li><a href="../classes/DistortElement.html">DistortElement</a></li>
+                                <li><a href="../classes/DistortEllipse.html">DistortEllipse</a></li>
                                 <li><a href="../classes/DistortString.html">DistortString</a></li>
                             </ul>
                 
@@ -51,6 +52,7 @@
                                 <li><a href="../modules/elements-abstract.html">elements-abstract</a></li>
                                 <li><a href="../modules/elements-primitives.html">elements-primitives</a></li>
                                 <li><a href="../modules/elements-text.html">elements-text</a></li>
+                                <li><a href="../modules/tranform-point-functions.html">tranform-point-functions</a></li>
                             </ul>
                         </div>
                     </div>
@@ -84,57 +86,38 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1 class="file-heading">File: src\DistortCircle.js</h1>
+<h1>tranform-point-functions Module</h1>
+<div class="box clearfix meta">
 
-<div class="file">
-    <pre class="code prettyprint linenums">
-/**
- * @module elements
- * @submodule elements-primitives
- * @class DistortCircle
- */
-class DistortCircle extends DistortElement {
 
-  /**
-   * @constructor
-   * @param {Distort} controller 
-   * @param {p5.Vector} position 
-   * @param {Number} size 
-   * @param {Number} detail 
-   */
-  constructor(controller, position, size, detail) {
-    super(controller, position, size);
-    this.generatePoints(detail);
-  }
+        <div class="foundat">
+            Defined in: <a href="../files/src_TransformPointBuiltIn.js.html#l1"><code>src\TransformPointBuiltIn.js:1</code></a>
+        </div>
 
-  /**
-   * Will generate points for this element in a circle shape. Detail defines how many points are generated.
-   * 
-   * @method generatePoints
-   * @param {Number} detail 
-   */
-  generatePoints(detail) {
-    let points = [];
-    for (let i = 0; i &lt; detail; i++) {
-      let angle = map(i, 0, detail, 0, TWO_PI);
-      let x = this.radius() * cos(angle);
-      let y = this.radius() * sin(angle);
-      points.push(createVector(x + this.position.x, y + this.position.y));
-    }
-    this.pointGroups.push(points);
-  }
+</div>
 
-  /**
-   * Returns the radius of the circle.
-   * 
-   * @method radius
-   */
-  radius() {
-    return this.scaledSize() / 2;
-  }
 
-}
-    </pre>
+<div class="box intro">
+    
+</div>
+
+
+<div class="yui3-g">
+    <div class="yui3-u-1-2">
+            <p>This module provides the following classes:</p>
+
+            <ul class="module-classes">
+                <li class="module-class">
+                    <a href="../classes/built-in-transform-point-functions.html">
+                        built-in-transform-point-functions
+                    </a>
+                </li>
+            </ul>
+    </div>
+
+
+    <div class="yui3-u-1-2">
+    </div>
 </div>
                     </div>
                 </div>

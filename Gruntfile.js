@@ -19,7 +19,13 @@ module.exports = function (grunt) {
 
     concat: {
       dist: {
-        src: ['src/DistortController.js', 'src/DistortElement.js', 'src/DistortCircle.js', 'src/DistortString.js'],
+        src: [
+          'src/DistortController.js',
+          'src/DistortElement.js',
+          'src/DistortEllipse.js',
+          'src/DistortString.js',
+          'src/TransformPointBuildIn.js',
+        ],
         dest: 'dist/p5.distort.js',
       },
     },

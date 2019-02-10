@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>DistortCircle - p5.distort</title>
+    <title>DistortEllipse - p5.distort</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -38,9 +38,10 @@
                 
                         <div id="api-tabview-panel">
                             <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/built-in-transform-point-functions.html">built-in-transform-point-functions</a></li>
                                 <li><a href="../classes/Distort.html">Distort</a></li>
-                                <li><a href="../classes/DistortCircle.html">DistortCircle</a></li>
                                 <li><a href="../classes/DistortElement.html">DistortElement</a></li>
+                                <li><a href="../classes/DistortEllipse.html">DistortEllipse</a></li>
                                 <li><a href="../classes/DistortString.html">DistortString</a></li>
                             </ul>
                 
@@ -51,6 +52,7 @@
                                 <li><a href="../modules/elements-abstract.html">elements-abstract</a></li>
                                 <li><a href="../modules/elements-primitives.html">elements-primitives</a></li>
                                 <li><a href="../modules/elements-text.html">elements-text</a></li>
+                                <li><a href="../modules/tranform-point-functions.html">tranform-point-functions</a></li>
                             </ul>
                         </div>
                     </div>
@@ -84,12 +86,12 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1>DistortCircle Class</h1>
+<h1>DistortEllipse Class</h1>
 <div class="box meta">
 
 
         <div class="foundat">
-            Defined in: <a href="../files/src_DistortCircle.js.html#l1"><code>src\DistortCircle.js:1</code></a>
+            Defined in: <a href="../files/src_DistortEllipse.js.html#l1"><code>src\DistortEllipse.js:1</code></a>
         </div>
 
             Module: <a href="../modules/elements-primitives.html">elements-primitives</a><br>
@@ -123,7 +125,11 @@
 
                             </li>
                             <li class="index-item method">
-                                <a href="#method_radius">radius</a>
+                                <a href="#method_getHeight">getHeight</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_getWidth">getWidth</a>
 
                             </li>
                     </ul>
@@ -157,7 +163,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_DistortCircle.js.html#l20"><code>src\DistortCircle.js:20</code></a>
+        <a href="../files/src_DistortEllipse.js.html#l23"><code>src\DistortEllipse.js:23</code></a>
         </p>
 
 
@@ -189,8 +195,8 @@
 
 
 </div>
-<div id="method_radius" class="method item">
-    <h3 class="name"><code>radius</code></h3>
+<div id="method_getHeight" class="method item">
+    <h3 class="name"><code>getHeight</code></h3>
 
         <span class="paren">()</span>
 
@@ -204,7 +210,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_DistortCircle.js.html#l37"><code>src\DistortCircle.js:37</code></a>
+        <a href="../files/src_DistortEllipse.js.html#l49"><code>src\DistortEllipse.js:49</code></a>
         </p>
 
 
@@ -212,7 +218,38 @@
     </div>
 
     <div class="description">
-        <p>Returns the radius of the circle.</p>
+        <p>Returns width accounting for distortFactor.</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_getWidth" class="method item">
+    <h3 class="name"><code>getWidth</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/src_DistortEllipse.js.html#l40"><code>src\DistortEllipse.js:40</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Returns width accounting for distortFactor.</p>
 
     </div>
 

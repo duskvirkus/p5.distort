@@ -14,11 +14,9 @@ class DistortElement {
    * @param {p5.Vector} position 
    * @param {Number} size 
    */
-  constructor(controller, position, size) {
+  constructor(controller, position) {
     this.setController(controller);
     this.position = position;
-    this.size = size;
-    this.offset = 0;
 
     this.controller;
     this.pointGroups = [];
@@ -52,30 +50,13 @@ class DistortElement {
     this.setController(controller);
   }
 
-  // TODO change this method
-  /**
-   * @method sectionSize
-   */
-  sectionSize() {
-    return this.size / 3.0;
-  }
-
-  /**
-   * Will update the offset to account for the current frame.
-   * 
-   * @method updateOffset
-   */
-  updateOffset() {
-    this.offset = map(this.controller.currentFrame, 0, this.controller.framesPerCycle, 0, this.sectionSize());
-  }
-
   /**
    * Method that will update all variables necessary to advance the frame.
    * 
    * @method update
    */
   update() {
-    this.updateOffset();
+
   }
 
   /**
@@ -92,7 +73,9 @@ class DistortElement {
       }
       for (let j = 0; j < this.pointGroups[i].length; j++) {
         let p = this.pointGroups[i][j];
-        p = this.transformPoint(this, p);
+        if (!(typeof this.transformPoint === 'undefined')) {
+          p = this.transformPoint(this, p);
+        }
         vertex(p.x, p.y);
       }
       if (i != 0) {
@@ -100,16 +83,6 @@ class DistortElement {
       }
     }
     endShape(CLOSE);
-  }
-
-  /**
-   * Helper method for the transformPoint() method. Separate so it can be overridden or used in an overridden transformPoint() method.
-   * 
-   * @method calculateProgress
-   * @param {p5.Vector} point
-   */
-  calculateProgress(point) {
-    return map(point.x + this.offset % this.sectionSize(), 0, this.sectionSize(), 0, TWO_PI)
   }
 
   /**
@@ -134,19 +107,6 @@ class DistortElement {
   }
 
   /**
-   * This is a default transform point function but another one can be set using the setTransformPoint() method.
-   * Return a new p5.Vector as not to effect the current state of the points being passed as a parameter.
-   * 
-   * @method transformPoint
-   * @param {DistortElement} element
-   * @param {p5.Vector} point 
-   */
-  transformPoint(element, point) {
-    let progress = element.calculateProgress(point);
-    return createVector(point.x, point.y + map(sin(progress), -1, 1, - element.size / element.controller.distortFactor, element.size / element.controller.distortFactor));
-  }
-
-  /**
    * Will override how a point is transformed. Pass in a function that receives a p5.Vector and return a different p5.Vector.
    * 
    * @method setTransformPoint
@@ -154,15 +114,6 @@ class DistortElement {
    */
   setTransformPoint(transformPointFunction) {
     this.transformPoint = transformPointFunction;
-  }
-
-  /**
-   * Will return a size that accounts for the distortFactor.
-   * 
-   * @method scaledSize
-   */
-  scaledSize() {
-    return this.size - 2 * (this.size / this.controller.distortFactor);
   }
 
   /**
@@ -183,6 +134,36 @@ class DistortElement {
     }
     this.pointGroups = newPointGroups;
     this.position = position;
+  }
+
+  /**
+   * Returns the distance between the center of the element and a point.
+   * 
+   * @method distanceFromCenter
+   * @param {p5.Vector} point 
+   */
+  distanceFromCenter(point) {
+    return dist(point.x, point.y, this.position.x, this.position.y);
+  }
+
+  /**
+   * Returns the distance between the center of the element and a point. Only accounting for the X dimension.
+   * 
+   * @method distanceFromCenterX
+   * @param {p5.Vector} point 
+   */
+  distanceFromCenterX(point) {
+    return point.x - this.position.x;
+  }
+
+  /**
+   * Returns the distance between the center of the element and a point. Only accounting for the Y dimension.
+   * 
+   * @method distanceFromCenterY
+   * @param {p5.Vector} point 
+   */
+  distanceFromCenterY(point) {
+    return point.y - this.position.x;
   }
 
 }
