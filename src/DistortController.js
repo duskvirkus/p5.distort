@@ -1,11 +1,14 @@
+/**
+ * Creates a Distort controller. Keeps track of frames and the distort factor.
+ * Also provides a streamlined way to render all elements associated with the controller.
+ * 
+ * @module controller
+ * @class Distort
+ */
 class Distort {
 
   /**
-   * Constructor
-   * 
-   * Creates a Distort controller. Keeps track of frames and the distort factor.
-   * Also provides a streamlined way to render all elements associated with the controller.
-   * 
+   * @constructor 
    * @param {Number} distortFactor 
    * @param {Number} framesPerCycle 
    */
@@ -17,12 +20,11 @@ class Distort {
   }
 
   /**
-   * Add Element
-   * 
    * Adds an element to the controller. Calling this method directly may result in problems.
    * This will be done automatically when a DistortElement is created.
    * If an Element is already been created it's controller should be changed using the changeController() method in DistortElement.
    * 
+   * @method addElement
    * @param {DistortElement} element 
    */
   addElement(element) {
@@ -30,9 +32,9 @@ class Distort {
   }
 
   /**
-   * Update
-   * 
    * Will update frame and all DistortElements under the controller.
+   * 
+   * @method update
    */
   update() {
     for (let i = 0; i < this.elements.length; i++) {
@@ -42,9 +44,9 @@ class Distort {
   }
 
   /**
-   * Render
-   * 
    * Renders all DistortElements under this controller.
+   * 
+   * @method render
    */
   render() {
     for (let i = 0; i < this.elements.length; i++) {

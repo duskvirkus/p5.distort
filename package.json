@@ -1,13 +1,18 @@
 {
   "name": "p5.distort",
   "version": "0.0.1",
-  "description": "",
+  "description": "A p5.js library for easy vertex manipulation.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/figraham/p5.distort.git"
+  },
   "author": "Fi Graham",
   "license": "MIT",
+  "homepage": "https://figraham.github.io/p5.distort/index.html",
   "devDependencies": {
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.3.1",
@@ -15,6 +20,7 @@
     "grunt-babel": "^8.0.0",
     "grunt-contrib-clean": "^2.0.0",
     "grunt-contrib-concat": "^1.0.1",
-    "grunt-contrib-uglify": "^4.0.0"
+    "grunt-contrib-uglify": "^4.0.0",
+    "grunt-contrib-yuidoc": "^1.0.0"
   }
 }
