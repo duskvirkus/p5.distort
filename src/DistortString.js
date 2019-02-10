@@ -1,10 +1,14 @@
+/**
+ * Creates a DistortElement from a string of text.
+ * 
+ * @module elements
+ * @submodule elements-text
+ * @class DistortString
+ */
 class DistortString extends DistortElement {
 
-  /**
-   * Constructor
-   * 
-   * Creates an element from a string of text.
-   * 
+  /** 
+   * @constructor
    * @param {Distort} controller 
    * @param {p5.Vector} position 
    * @param {Number} size 
@@ -25,9 +29,9 @@ class DistortString extends DistortElement {
   }
 
   /**
-   * Generate Points
-   * 
    * Will generate points from the string and separates the different shapes required to draw text.
+   * 
+   * @method generatePoints
    */
   generatePoints() {
     let p5Points = this.font.textToPoints(
@@ -54,14 +58,13 @@ class DistortString extends DistortElement {
     this.pointGroups.push(points);
   }
 
+
+  // TODO change name
+  // TODO improve distanceThreshold
   /**
-   * Different Shape
-   * 
    * Helper method that returns a boolean if point at an index should be in a different shape.
    * 
-   * TODO change name
-   * TODO improve distanceThreshold
-   * 
+   * @method differentShape
    * @param {p5.Vector[]} points 
    * @param {Number} pointIndex 
    */
@@ -75,9 +78,9 @@ class DistortString extends DistortElement {
   }
 
   /**
-   * Generate Bounds
-   * 
    * A method that will generate text bounds for use in positioning text correctly.
+   * 
+   * @method generateBounds
    */
   generateBounds() {
     this.bounds = this.font.textBounds(this.string, this.position.x, this.position.y, this.scaledSize());
