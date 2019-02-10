@@ -6,17 +6,6 @@
         "url": "https://figraham.github.io/p5.distort/index.html"
     },
     "files": {
-        "src\\DistortCircle.js": {
-            "name": "src\\DistortCircle.js",
-            "modules": {
-                "elements-primitives": 1
-            },
-            "classes": {
-                "DistortCircle": 1
-            },
-            "fors": {},
-            "namespaces": {}
-        },
         "src\\DistortController.js": {
             "name": "src\\DistortController.js",
             "modules": {
@@ -39,6 +28,17 @@
             "fors": {},
             "namespaces": {}
         },
+        "src\\DistortEllipse.js": {
+            "name": "src\\DistortEllipse.js",
+            "modules": {
+                "elements-c": 1
+            },
+            "classes": {
+                "DistortEllipse": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "src\\DistortString.js": {
             "name": "src\\DistortString.js",
             "modules": {
@@ -52,39 +52,6 @@
         }
     },
     "modules": {
-        "elements": {
-            "name": "elements",
-            "submodules": {
-                "elements-primitives": 1,
-                "elements-abstract": 1,
-                "elements-text": 1
-            },
-            "elements": {},
-            "classes": {
-                "DistortCircle": 1,
-                "DistortElement": 1,
-                "DistortString": 1
-            },
-            "fors": {},
-            "namespaces": {},
-            "file": "src\\DistortString.js",
-            "line": 1
-        },
-        "elements-primitives": {
-            "name": "elements-primitives",
-            "submodules": {},
-            "elements": {},
-            "classes": {
-                "DistortCircle": 1
-            },
-            "fors": {},
-            "is_submodule": 1,
-            "namespaces": {},
-            "module": "elements",
-            "namespace": "",
-            "file": "src\\DistortCircle.js",
-            "line": 1
-        },
         "controller": {
             "name": "controller",
             "submodules": {},
@@ -98,6 +65,24 @@
             "file": "src\\DistortController.js",
             "line": 1,
             "description": "Creates a Distort controller. Keeps track of frames and the distort factor.\nAlso provides a streamlined way to render all elements associated with the controller."
+        },
+        "elements": {
+            "name": "elements",
+            "submodules": {
+                "elements-abstract": 1,
+                "elements-c": 1,
+                "elements-text": 1
+            },
+            "elements": {},
+            "classes": {
+                "DistortElement": 1,
+                "DistortEllipse": 1,
+                "DistortString": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "file": "src\\DistortString.js",
+            "line": 1
         },
         "elements-abstract": {
             "name": "elements-abstract",
@@ -114,6 +99,21 @@
             "file": "src\\DistortElement.js",
             "line": 1,
             "description": "Creates a distort element. This constructor is not meant to be called directly.\nShould be called as super() by a class that extends DistortElement."
+        },
+        "elements-c": {
+            "name": "elements-c",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "DistortEllipse": 1
+            },
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "elements",
+            "namespace": "",
+            "file": "src\\DistortEllipse.js",
+            "line": 1
         },
         "elements-text": {
             "name": "elements-text",
@@ -133,20 +133,6 @@
         }
     },
     "classes": {
-        "DistortCircle": {
-            "name": "DistortCircle",
-            "shortname": "DistortCircle",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "elements",
-            "submodule": "elements-primitives",
-            "namespace": "",
-            "file": "src\\DistortCircle.js",
-            "line": 1
-        },
         "Distort": {
             "name": "Distort",
             "shortname": "Distort",
@@ -176,6 +162,20 @@
             "line": 1,
             "description": "Creates a distort element. This constructor is not meant to be called directly.\nShould be called as super() by a class that extends DistortElement."
         },
+        "DistortEllipse": {
+            "name": "DistortEllipse",
+            "shortname": "DistortEllipse",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "elements",
+            "submodule": "elements-c",
+            "namespace": "",
+            "file": "src\\DistortEllipse.js",
+            "line": 1
+        },
         "DistortString": {
             "name": "DistortString",
             "shortname": "DistortString",
@@ -194,63 +194,6 @@
     },
     "elements": {},
     "classitems": [
-        {
-            "file": "src\\DistortCircle.js",
-            "line": 8,
-            "is_constructor": 1,
-            "params": [
-                {
-                    "name": "controller",
-                    "description": "",
-                    "type": "Distort"
-                },
-                {
-                    "name": "position",
-                    "description": "",
-                    "type": "p5.Vector"
-                },
-                {
-                    "name": "size",
-                    "description": "",
-                    "type": "Number"
-                },
-                {
-                    "name": "detail",
-                    "description": "",
-                    "type": "Number"
-                }
-            ],
-            "class": "DistortCircle",
-            "module": "elements",
-            "submodule": "elements-primitives"
-        },
-        {
-            "file": "src\\DistortCircle.js",
-            "line": 20,
-            "description": "Will generate points for this element in a circle shape. Detail defines how many points are generated.",
-            "itemtype": "method",
-            "name": "generatePoints",
-            "params": [
-                {
-                    "name": "detail",
-                    "description": "",
-                    "type": "Number"
-                }
-            ],
-            "class": "DistortCircle",
-            "module": "elements",
-            "submodule": "elements-primitives"
-        },
-        {
-            "file": "src\\DistortCircle.js",
-            "line": 37,
-            "description": "Returns the radius of the circle.",
-            "itemtype": "method",
-            "name": "radius",
-            "class": "DistortCircle",
-            "module": "elements",
-            "submodule": "elements-primitives"
-        },
         {
             "file": "src\\DistortController.js",
             "line": 10,
@@ -513,6 +456,58 @@
             "submodule": "elements-abstract"
         },
         {
+            "file": "src\\DistortEllipse.js",
+            "line": 8,
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "controller",
+                    "description": "",
+                    "type": "Distort"
+                },
+                {
+                    "name": "position",
+                    "description": "",
+                    "type": "p5.Vector"
+                },
+                {
+                    "name": "width",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "height",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "detail",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "class": "DistortEllipse",
+            "module": "elements",
+            "submodule": "elements-c"
+        },
+        {
+            "file": "src\\DistortEllipse.js",
+            "line": 23,
+            "description": "Will generate points for this element in a circle shape. Detail defines how many points are generated.",
+            "itemtype": "method",
+            "name": "generatePoints",
+            "params": [
+                {
+                    "name": "detail",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "class": "DistortEllipse",
+            "module": "elements",
+            "submodule": "elements-c"
+        },
+        {
             "file": "src\\DistortString.js",
             "line": 10,
             "is_constructor": 1,
@@ -593,15 +588,15 @@
     "warnings": [
         {
             "message": "Missing item type",
-            "line": " src\\DistortCircle.js:8"
-        },
-        {
-            "message": "Missing item type",
             "line": " src\\DistortController.js:10"
         },
         {
             "message": "Missing item type",
             "line": " src\\DistortElement.js:11"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\DistortEllipse.js:8"
         },
         {
             "message": "Missing item type",

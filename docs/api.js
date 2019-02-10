@@ -2,15 +2,15 @@ YUI.add("yuidoc-meta", function(Y) {
    Y.YUIDoc = { meta: {
     "classes": [
         "Distort",
-        "DistortCircle",
         "DistortElement",
+        "DistortEllipse",
         "DistortString"
     ],
     "modules": [
         "controller",
         "elements",
         "elements-abstract",
-        "elements-primitives",
+        "elements-c",
         "elements-text"
     ],
     "allModules": [
@@ -29,8 +29,8 @@ YUI.add("yuidoc-meta", function(Y) {
             "description": "Creates a distort element. This constructor is not meant to be called directly.\nShould be called as super() by a class that extends DistortElement."
         },
         {
-            "displayName": "elements-primitives",
-            "name": "elements-primitives"
+            "displayName": "elements-c",
+            "name": "elements-c"
         },
         {
             "displayName": "elements-text",
