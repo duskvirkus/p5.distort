@@ -1,6 +1,6 @@
 /**
  * @module elements
- * @submodule primitives
+ * @submodule elements-primitives
  * @class DistortCircle
  */
 class DistortCircle extends DistortElement {
