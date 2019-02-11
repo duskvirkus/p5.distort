@@ -347,11 +347,29 @@
             "file": "src\\DistortController.js",
             "line": 66,
             "description": "Scales a value to account for the distortFactor.",
+            "itemtype": "method",
+            "name": "scaleValue",
             "params": [
                 {
                     "name": "value",
                     "description": "",
                     "type": "Number"
+                }
+            ],
+            "class": "Distort",
+            "module": "controller"
+        },
+        {
+            "file": "src\\DistortController.js",
+            "line": 76,
+            "description": "Returns an index for the element. -1 if not in controller.",
+            "itemtype": "method",
+            "name": "elementIndex",
+            "params": [
+                {
+                    "name": "element",
+                    "description": "",
+                    "type": "DistortElement"
                 }
             ],
             "class": "Distort",
@@ -448,7 +466,7 @@
         },
         {
             "file": "src\\DistortElement.js",
-            "line": 98,
+            "line": 99,
             "description": "Takes one function as a parameter. The passed function should have no parameters and use set the stroke and fill.\nIt will be called at the beginning of the render() method.",
             "itemtype": "method",
             "name": "setDrawingTraits",
@@ -465,7 +483,7 @@
         },
         {
             "file": "src\\DistortElement.js",
-            "line": 109,
+            "line": 110,
             "description": "Will override how a point is transformed. Pass in a function that receives a p5.Vector and return a different p5.Vector.",
             "itemtype": "method",
             "name": "setTransformPoint",
@@ -482,7 +500,7 @@
         },
         {
             "file": "src\\DistortElement.js",
-            "line": 119,
+            "line": 120,
             "description": "Will change the position of an element that has already been created.",
             "itemtype": "method",
             "name": "setPosition",
@@ -499,7 +517,7 @@
         },
         {
             "file": "src\\DistortElement.js",
-            "line": 139,
+            "line": 140,
             "description": "Returns the distance between the center of the element and a point.",
             "itemtype": "method",
             "name": "distanceFromCenter",
@@ -516,7 +534,7 @@
         },
         {
             "file": "src\\DistortElement.js",
-            "line": 149,
+            "line": 150,
             "description": "Returns the distance between the center of the element and a point. Only accounting for the X dimension.",
             "itemtype": "method",
             "name": "distanceFromCenterX",
@@ -533,7 +551,7 @@
         },
         {
             "file": "src\\DistortElement.js",
-            "line": 159,
+            "line": 160,
             "description": "Returns the distance between the center of the element and a point. Only accounting for the Y dimension.",
             "itemtype": "method",
             "name": "distanceFromCenterY",
@@ -544,6 +562,16 @@
                     "type": "p5.Vector"
                 }
             ],
+            "class": "DistortElement",
+            "module": "elements",
+            "submodule": "elements-abstract"
+        },
+        {
+            "file": "src\\DistortElement.js",
+            "line": 170,
+            "description": "Shortcut method for finding index of this element.",
+            "itemtype": "method",
+            "name": "getIndex",
             "class": "DistortElement",
             "module": "elements",
             "submodule": "elements-abstract"
@@ -898,10 +926,6 @@
         {
             "message": "Missing item type",
             "line": " src\\DistortController.js:10"
-        },
-        {
-            "message": "Missing item type\nScales a value to account for the distortFactor.",
-            "line": " src\\DistortController.js:66"
         },
         {
             "message": "Missing item type",

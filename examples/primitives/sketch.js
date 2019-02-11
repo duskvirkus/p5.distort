@@ -7,8 +7,8 @@ let trianglePrimitive;
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  frameRate(30);
-  distort = new Distort(32, 30);
+  frameRate(60);
+  distort = new Distort(32, 1200);
 
   let primitiveScale = height * 1 / 2;
 
