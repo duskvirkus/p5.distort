@@ -11,9 +11,9 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
 
   frameRate(60);
-  distort = new Distort(32, 1200);
+  distort = new Distort(20, 1200);
 
-  helloWorld = new DistortString(distort, createVector(width / 2, height / 2), font, "Hello World", height / 3);
+  helloWorld = new DistortString(distort, createVector(width / 2, height / 2), font, "Hello World", height);
   helloWorld.setTransformPoint(PERLIN_NOISE);
 }
 

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>controller - p5.distort</title>
+    <title>src\primitives\DistortPolygon.js - p5.distort</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -90,40 +90,98 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1>controller Module</h1>
-<div class="box clearfix meta">
+<h1 class="file-heading">File: src\primitives\DistortPolygon.js</h1>
 
+<div class="file">
+    <pre class="code prettyprint linenums">
+/**
+ * @module elements
+ * @submodule elements-primitives
+ * @class DistortPolygon
+ */
+class DistortPolygon extends DistortElement {
 
-        <div class="foundat">
-            Defined in: <a href="../files/src_core_DistortController.js.html#l1"><code>src\core\DistortController.js:1</code></a>
-        </div>
+  /**
+   * @constructor
+   * @param {Distort} controller 
+   * @param {p5.Vector} position 
+   * @param {p5.Vector} corners
+   * @param {Number} detail 
+   */
+  constructor(controller, position, corners, detail) {
+    super(controller, position);
+    this.corners = corners;
+    this.generatePoints(int(detail));
+  }
 
-</div>
+  /**
+   * Will generate points for this element in a triangle shape. Detail defines how many points are generated.
+   * 
+   * @method generatePoints
+   * @param {Number} detail 
+   */
+  generatePoints(detail) {
+    let points = [];
+    let numberOfSidePoints = [];
+    for (let i = 0; i &lt; this.corners.length; i++) {
+      numberOfSidePoints.push(int((this.getSide(i) / this.getPerimeter()) * detail));
+    }
+    for (let i = 0; i &lt; numberOfSidePoints.length; i++) {
+      let k = i + 1;
+      if (k &gt;= this.corners.length) {
+        k = 0;
+      }
+      for (let j = 0; j &lt; numberOfSidePoints[i]; j++) {
+        let x = lerp(this.corners[i].x, this.corners[k].x, j / float(numberOfSidePoints[i]));
+        let y = lerp(this.corners[i].y, this.corners[k].y, j / float(numberOfSidePoints[i]));
+        console.log(&quot;x &quot; + i + &quot; &quot; + j + &quot;: &quot; + x);
+        console.log(&quot;y &quot; + i + &quot; &quot; + j + &quot;: &quot; + y);
+        points.push(createVector(x + this.position.x, y + this.position.y));
+      }
+    }
+    this.pointGroups.push(points);
+  }
 
+  /**
+   * Returns a side length of the polygon accounting for the distortFactor.
+   * 
+   * @method getSide
+   * @param {Number} sideIndex 
+   */
+  getSide(sideIndex) {
+    return this.controller.scaleValue(this.calculateSide(sideIndex));
+  }
 
-<div class="box intro">
-    <p>Creates a Distort controller. Keeps track of frames and the distort factor.
-Also provides a streamlined way to render all elements associated with the controller.</p>
+  /**
+   * Returns the length of a polygon side.
+   * 
+   * @method calculateSide
+   * @param {Number} sideIndex 
+   */
+  calculateSide(sideIndex) {
+    sideIndex = int(sideIndex);
+    if (sideIndex &gt;= this.corners.length &amp;&amp; sideIndex &gt;= 0) {
+      throw new Error(&quot;calculateSide() expects a number between 0 and &quot; + this.corners.length - 1 + &quot;. It was given &quot; + sideIndex + &quot;.&quot;);
+    }
+    let endPoint = sideIndex &lt; this.corners.length - 1 ? sideIndex + 1 : 0;
+    return dist(this.corners[sideIndex].x, this.corners[sideIndex].y, this.corners[endPoint].x, this.corners[endPoint].y);
+  }
 
-</div>
+  /**
+   * Gets all scaled side lengths added together.
+   * 
+   * @method getPerimeter
+   */
+  getPerimeter() {
+    let perimeter = 0;
+    for (let i = 0; i &lt; this.corners.length; i++) {
+      perimeter += this.getSide(i);
+    }
+    return perimeter;
+  }
 
-
-<div class="yui3-g">
-    <div class="yui3-u-1-2">
-            <p>This module provides the following classes:</p>
-
-            <ul class="module-classes">
-                <li class="module-class">
-                    <a href="../classes/Distort.html">
-                        Distort
-                    </a>
-                </li>
-            </ul>
-    </div>
-
-
-    <div class="yui3-u-1-2">
-    </div>
+}
+    </pre>
 </div>
                     </div>
                 </div>
