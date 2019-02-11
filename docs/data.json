@@ -39,6 +39,15 @@
             "fors": {},
             "namespaces": {}
         },
+        "src\\DistortRectangle.js": {
+            "name": "src\\DistortRectangle.js",
+            "modules": {},
+            "classes": {
+                "DistortRectangle": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "src\\DistortString.js": {
             "name": "src\\DistortString.js",
             "modules": {
@@ -88,6 +97,7 @@
             "classes": {
                 "DistortElement": 1,
                 "DistortEllipse": 1,
+                "DistortRectangle": 1,
                 "DistortString": 1
             },
             "fors": {},
@@ -116,14 +126,15 @@
             "submodules": {},
             "elements": {},
             "classes": {
-                "DistortEllipse": 1
+                "DistortEllipse": 1,
+                "DistortRectangle": 1
             },
             "fors": {},
             "is_submodule": 1,
             "namespaces": {},
             "module": "elements",
             "namespace": "",
-            "file": "src\\DistortEllipse.js",
+            "file": "src\\DistortRectangle.js",
             "line": 1
         },
         "elements-text": {
@@ -198,6 +209,20 @@
             "submodule": "elements-primitives",
             "namespace": "",
             "file": "src\\DistortEllipse.js",
+            "line": 1
+        },
+        "DistortRectangle": {
+            "name": "DistortRectangle",
+            "shortname": "DistortRectangle",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "elements",
+            "submodule": "elements-primitives",
+            "namespace": "",
+            "file": "src\\DistortRectangle.js",
             "line": 1
         },
         "DistortString": {
@@ -571,6 +596,78 @@
             "submodule": "elements-primitives"
         },
         {
+            "file": "src\\DistortRectangle.js",
+            "line": 8,
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "controller",
+                    "description": "",
+                    "type": "Distort"
+                },
+                {
+                    "name": "position",
+                    "description": "",
+                    "type": "p5.Vector"
+                },
+                {
+                    "name": "width",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "height",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "detail",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "class": "DistortRectangle",
+            "module": "elements",
+            "submodule": "elements-primitives"
+        },
+        {
+            "file": "src\\DistortRectangle.js",
+            "line": 23,
+            "description": "Will generate points for this element in a circle shape. Detail defines how many points are generated.",
+            "itemtype": "method",
+            "name": "generatePoints",
+            "params": [
+                {
+                    "name": "detail",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "class": "DistortRectangle",
+            "module": "elements",
+            "submodule": "elements-primitives"
+        },
+        {
+            "file": "src\\DistortRectangle.js",
+            "line": 56,
+            "description": "Returns width accounting for distortFactor.",
+            "itemtype": "method",
+            "name": "getWidth",
+            "class": "DistortRectangle",
+            "module": "elements",
+            "submodule": "elements-primitives"
+        },
+        {
+            "file": "src\\DistortRectangle.js",
+            "line": 65,
+            "description": "Returns width accounting for distortFactor.",
+            "itemtype": "method",
+            "name": "getHeight",
+            "class": "DistortRectangle",
+            "module": "elements",
+            "submodule": "elements-primitives"
+        },
+        {
             "file": "src\\DistortString.js",
             "line": 10,
             "is_constructor": 1,
@@ -697,6 +794,10 @@
         {
             "message": "Missing item type",
             "line": " src\\DistortEllipse.js:8"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\DistortRectangle.js:8"
         },
         {
             "message": "Missing item type",

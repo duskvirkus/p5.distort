@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>elements-abstract - p5.distort</title>
+    <title>src\DistortRectangle.js - p5.distort</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -87,40 +87,85 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1>elements-abstract Module</h1>
-<div class="box clearfix meta">
+<h1 class="file-heading">File: src\DistortRectangle.js</h1>
 
+<div class="file">
+    <pre class="code prettyprint linenums">
+/**
+ * @module elements
+ * @submodule elements-primitives
+ * @class DistortRectangle
+ */
+class DistortRectangle extends DistortElement {
 
-        <div class="foundat">
-            Defined in: <a href="../files/src_DistortElement.js.html#l1"><code>src\DistortElement.js:1</code></a>
-        </div>
+  /**
+   * @constructor
+   * @param {Distort} controller 
+   * @param {p5.Vector} position 
+   * @param {Number} width
+   * @param {Number} height
+   * @param {Number} detail 
+   */
+  constructor(controller, position, width, height, detail) {
+    super(controller, position);
+    this.width = width;
+    this.height = height;
+    this.generatePoints(detail);
+  }
 
-</div>
+  /**
+   * Will generate points for this element in a circle shape. Detail defines how many points are generated.
+   * 
+   * @method generatePoints
+   * @param {Number} detail 
+   */
+  generatePoints(detail) {
+    let points = [];
+    let horizontalPoints = int((this.getWidth() / (this.getWidth() + this.getHeight())) * detail) / 2;
+    let verticalPoints = (detail - (horizontalPoints * 2)) / 2;
+    for (let i = 0; i &lt; horizontalPoints; i++) {
+      let x = map(i, 0, horizontalPoints, - this.getWidth() / 2, this.getWidth() / 2);
+      let y = - this.getHeight() / 2;
+      points.push(createVector(x + this.position.x, y + this.position.y));
+    }
+    for (let i = 0; i &lt; verticalPoints; i++) {
+      let x = this.getWidth() / 2;
+      let y = map(i, 0, verticalPoints, - this.getHeight() / 2, this.getHeight() / 2);
+      points.push(createVector(x + this.position.x, y + this.position.y));
+    }
+    for (let i = 0; i &lt; horizontalPoints; i++) {
+      let x = map(i, 0, horizontalPoints, this.getWidth() / 2, - this.getWidth() / 2);
+      let y = this.getHeight() / 2;
+      points.push(createVector(x + this.position.x, y + this.position.y));
+    }
+    for (let i = 0; i &lt; verticalPoints; i++) {
+      let x = - this.getWidth() / 2;
+      let y = map(i, 0, verticalPoints, this.getHeight() / 2, - this.getHeight() / 2);
+      points.push(createVector(x + this.position.x, y + this.position.y));
+    }
+    this.pointGroups.push(points);
+  }
 
+  /**
+   * Returns width accounting for distortFactor.
+   * 
+   * @method getWidth
+   */
+  getWidth() {
+    return this.controller.scaleValue(this.width);
+  }
 
-<div class="box intro">
-    <p>Creates a distort element. This constructor is not meant to be called directly.
-Should be called as super() by a class that extends DistortElement.</p>
+  /**
+   * Returns width accounting for distortFactor.
+   * 
+   * @method getHeight
+   */
+  getHeight() {
+    return this.controller.scaleValue(this.height);
+  }
 
-</div>
-
-
-<div class="yui3-g">
-    <div class="yui3-u-1-2">
-            <p>This module provides the following classes:</p>
-
-            <ul class="module-classes">
-                <li class="module-class">
-                    <a href="../classes/DistortElement.html">
-                        DistortElement
-                    </a>
-                </li>
-            </ul>
-    </div>
-
-
-    <div class="yui3-u-1-2">
-    </div>
+}
+    </pre>
 </div>
                     </div>
                 </div>
