@@ -25,6 +25,7 @@ module.exports = function (grunt) {
           'src/DistortEllipse.js',
           'src/DistortRectangle.js',
           'src/DistortString.js',
+          'src/DistortTriangle.js',
           'src/TransformPointBuiltIn.js',
         ],
         dest: 'dist/p5.distort.js',

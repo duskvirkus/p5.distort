@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>DistortRectangle - p5.distort</title>
+    <title>DistortTriangle - p5.distort</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -88,12 +88,12 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1>DistortRectangle Class</h1>
+<h1>DistortTriangle Class</h1>
 <div class="box meta">
 
 
         <div class="foundat">
-            Defined in: <a href="../files/src_DistortRectangle.js.html#l1"><code>src\DistortRectangle.js:1</code></a>
+            Defined in: <a href="../files/src_DistortTriangle.js.html#l1"><code>src\DistortTriangle.js:1</code></a>
         </div>
 
             Module: <a href="../modules/elements-primitives.html">elements-primitives</a><br>
@@ -123,15 +123,15 @@
 
                     <ul class="index-list methods">
                             <li class="index-item method">
+                                <a href="#method_calculateSide">calculateSide</a>
+
+                            </li>
+                            <li class="index-item method">
                                 <a href="#method_generatePoints">generatePoints</a>
 
                             </li>
                             <li class="index-item method">
-                                <a href="#method_getHeight">getHeight</a>
-
-                            </li>
-                            <li class="index-item method">
-                                <a href="#method_getWidth">getWidth</a>
+                                <a href="#method_getSide">getSide</a>
 
                             </li>
                     </ul>
@@ -144,6 +144,59 @@
             <div id="methods" class="api-class-tabpanel">
                 <h2 class="off-left">Methods</h2>
 
+<div id="method_calculateSide" class="method item">
+    <h3 class="name"><code>calculateSide</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>sideIndex</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/src_DistortTriangle.js.html#l66"><code>src\DistortTriangle.js:66</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Returns the length of a triangle side. Expects an index between 0 and 2.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">sideIndex</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
 <div id="method_generatePoints" class="method item">
     <h3 class="name"><code>generatePoints</code></h3>
 
@@ -165,7 +218,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_DistortRectangle.js.html#l23"><code>src\DistortRectangle.js:23</code></a>
+        <a href="../files/src_DistortTriangle.js.html#l26"><code>src\DistortTriangle.js:26</code></a>
         </p>
 
 
@@ -173,7 +226,7 @@
     </div>
 
     <div class="description">
-        <p>Will generate points for this element in a circle shape. Detail defines how many points are generated.</p>
+        <p>Will generate points for this element in a triangle shape. Detail defines how many points are generated.</p>
 
     </div>
 
@@ -197,41 +250,16 @@
 
 
 </div>
-<div id="method_getHeight" class="method item">
-    <h3 class="name"><code>getHeight</code></h3>
+<div id="method_getSide" class="method item">
+    <h3 class="name"><code>getSide</code></h3>
 
-        <span class="paren">()</span>
-
-
-
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/src_DistortRectangle.js.html#l65"><code>src\DistortRectangle.js:65</code></a>
-        </p>
-
-
-
-    </div>
-
-    <div class="description">
-        <p>Returns width accounting for distortFactor.</p>
-
-    </div>
-
-
-
-
-</div>
-<div id="method_getWidth" class="method item">
-    <h3 class="name"><code>getWidth</code></h3>
-
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>sideIndex</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
 
 
 
@@ -243,7 +271,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_DistortRectangle.js.html#l56"><code>src\DistortRectangle.js:56</code></a>
+        <a href="../files/src_DistortTriangle.js.html#l56"><code>src\DistortTriangle.js:56</code></a>
         </p>
 
 
@@ -251,10 +279,26 @@
     </div>
 
     <div class="description">
-        <p>Returns width accounting for distortFactor.</p>
+        <p>Returns a side length of the triangle accounting for the distortFactor. Expects a side index between 0 and 2.</p>
 
     </div>
 
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">sideIndex</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
 
 
 

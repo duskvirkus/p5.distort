@@ -59,6 +59,15 @@
             "fors": {},
             "namespaces": {}
         },
+        "src\\DistortTriangle.js": {
+            "name": "src\\DistortTriangle.js",
+            "modules": {},
+            "classes": {
+                "DistortTriangle": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "src\\TransformPointBuiltIn.js": {
             "name": "src\\TransformPointBuiltIn.js",
             "modules": {
@@ -98,11 +107,12 @@
                 "DistortElement": 1,
                 "DistortEllipse": 1,
                 "DistortRectangle": 1,
-                "DistortString": 1
+                "DistortString": 1,
+                "DistortTriangle": 1
             },
             "fors": {},
             "namespaces": {},
-            "file": "src\\DistortString.js",
+            "file": "src\\DistortTriangle.js",
             "line": 1
         },
         "elements-abstract": {
@@ -127,14 +137,15 @@
             "elements": {},
             "classes": {
                 "DistortEllipse": 1,
-                "DistortRectangle": 1
+                "DistortRectangle": 1,
+                "DistortTriangle": 1
             },
             "fors": {},
             "is_submodule": 1,
             "namespaces": {},
             "module": "elements",
             "namespace": "",
-            "file": "src\\DistortRectangle.js",
+            "file": "src\\DistortTriangle.js",
             "line": 1
         },
         "elements-text": {
@@ -239,6 +250,20 @@
             "file": "src\\DistortString.js",
             "line": 1,
             "description": "Creates a DistortElement from a string of text."
+        },
+        "DistortTriangle": {
+            "name": "DistortTriangle",
+            "shortname": "DistortTriangle",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "elements",
+            "submodule": "elements-primitives",
+            "namespace": "",
+            "file": "src\\DistortTriangle.js",
+            "line": 1
         },
         "built-in-transform-point-functions": {
             "name": "built-in-transform-point-functions",
@@ -752,6 +777,97 @@
             "submodule": "elements-text"
         },
         {
+            "file": "src\\DistortTriangle.js",
+            "line": 9,
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "controller",
+                    "description": "",
+                    "type": "Distort"
+                },
+                {
+                    "name": "position",
+                    "description": "",
+                    "type": "p5.Vector"
+                },
+                {
+                    "name": "point0",
+                    "description": "",
+                    "type": "p5.Vector"
+                },
+                {
+                    "name": "point1",
+                    "description": "",
+                    "type": "p5.Vector"
+                },
+                {
+                    "name": "point2",
+                    "description": "",
+                    "type": "p5.Vector"
+                },
+                {
+                    "name": "detail",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "class": "DistortTriangle",
+            "module": "elements",
+            "submodule": "elements-primitives"
+        },
+        {
+            "file": "src\\DistortTriangle.js",
+            "line": 26,
+            "description": "Will generate points for this element in a triangle shape. Detail defines how many points are generated.",
+            "itemtype": "method",
+            "name": "generatePoints",
+            "params": [
+                {
+                    "name": "detail",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "class": "DistortTriangle",
+            "module": "elements",
+            "submodule": "elements-primitives"
+        },
+        {
+            "file": "src\\DistortTriangle.js",
+            "line": 56,
+            "description": "Returns a side length of the triangle accounting for the distortFactor. Expects a side index between 0 and 2.",
+            "itemtype": "method",
+            "name": "getSide",
+            "params": [
+                {
+                    "name": "sideIndex",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "class": "DistortTriangle",
+            "module": "elements",
+            "submodule": "elements-primitives"
+        },
+        {
+            "file": "src\\DistortTriangle.js",
+            "line": 66,
+            "description": "Returns the length of a triangle side. Expects an index between 0 and 2.",
+            "itemtype": "method",
+            "name": "calculateSide",
+            "params": [
+                {
+                    "name": "sideIndex",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "class": "DistortTriangle",
+            "module": "elements",
+            "submodule": "elements-primitives"
+        },
+        {
             "file": "src\\TransformPointBuiltIn.js",
             "line": 7,
             "description": "Will transform a point based on perlin noise in both the x and y direction.",
@@ -806,6 +922,10 @@
         {
             "message": "Missing item type",
             "line": " src\\DistortString.js:91"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\DistortTriangle.js:9"
         }
     ]
 }

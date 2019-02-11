@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src\DistortRectangle.js - p5.distort</title>
+    <title>src\DistortTriangle.js - p5.distort</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -88,81 +88,93 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1 class="file-heading">File: src\DistortRectangle.js</h1>
+<h1 class="file-heading">File: src\DistortTriangle.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
 /**
  * @module elements
  * @submodule elements-primitives
- * @class DistortRectangle
+ * @class DistortTriangle
  */
-class DistortRectangle extends DistortElement {
+class DistortTriangle extends DistortElement {
 
+  // TODO add check to see if detail is greater that 3
   /**
    * @constructor
    * @param {Distort} controller 
    * @param {p5.Vector} position 
-   * @param {Number} width
-   * @param {Number} height
+   * @param {p5.Vector} point0
+   * @param {p5.Vector} point1
+   * @param {p5.Vector} point2
    * @param {Number} detail 
    */
-  constructor(controller, position, width, height, detail) {
+  constructor(controller, position, point0, point1, point2, detail) {
     super(controller, position);
-    this.width = width;
-    this.height = height;
+    this.point0 = point0;
+    this.point1 = point1;
+    this.point2 = point2;
     this.generatePoints(detail);
   }
 
   /**
-   * Will generate points for this element in a circle shape. Detail defines how many points are generated.
+   * Will generate points for this element in a triangle shape. Detail defines how many points are generated.
    * 
    * @method generatePoints
    * @param {Number} detail 
    */
   generatePoints(detail) {
     let points = [];
-    let horizontalPoints = int((this.getWidth() / (this.getWidth() + this.getHeight())) * detail) / 2;
-    let verticalPoints = (detail - (horizontalPoints * 2)) / 2;
-    for (let i = 0; i &lt; horizontalPoints; i++) {
-      let x = map(i, 0, horizontalPoints, - this.getWidth() / 2, this.getWidth() / 2);
-      let y = - this.getHeight() / 2;
+    let side0Points = int((this.getSide(0) / (this.getSide(0) + this.getSide(1) + this.getSide(2))) * detail);
+    let side1Points = int((this.getSide(1) / (this.getSide(0) + this.getSide(1) + this.getSide(2))) * detail);
+    let side2Points = detail - (side0Points + side1Points);
+    for (let i = 0; i &lt; side0Points; i++) {
+      let x = lerp(this.point0.x, this.point1.x, i / float(side0Points));
+      let y = lerp(this.point0.y, this.point1.y, i / float(side0Points));
       points.push(createVector(x + this.position.x, y + this.position.y));
     }
-    for (let i = 0; i &lt; verticalPoints; i++) {
-      let x = this.getWidth() / 2;
-      let y = map(i, 0, verticalPoints, - this.getHeight() / 2, this.getHeight() / 2);
+    // TODO refactor into double for loop
+    for (let i = 0; i &lt; side1Points; i++) {
+      let x = lerp(this.point1.x, this.point2.x, i / float(side1Points));
+      let y = lerp(this.point1.y, this.point2.y, i / float(side1Points));
       points.push(createVector(x + this.position.x, y + this.position.y));
     }
-    for (let i = 0; i &lt; horizontalPoints; i++) {
-      let x = map(i, 0, horizontalPoints, this.getWidth() / 2, - this.getWidth() / 2);
-      let y = this.getHeight() / 2;
-      points.push(createVector(x + this.position.x, y + this.position.y));
-    }
-    for (let i = 0; i &lt; verticalPoints; i++) {
-      let x = - this.getWidth() / 2;
-      let y = map(i, 0, verticalPoints, this.getHeight() / 2, - this.getHeight() / 2);
+    for (let i = 0; i &lt; side2Points; i++) {
+      let x = lerp(this.point2.x, this.point0.x, i / float(side2Points));
+      let y = lerp(this.point2.y, this.point0.y, i / float(side2Points));
       points.push(createVector(x + this.position.x, y + this.position.y));
     }
     this.pointGroups.push(points);
   }
 
   /**
-   * Returns width accounting for distortFactor.
+   * Returns a side length of the triangle accounting for the distortFactor. Expects a side index between 0 and 2.
    * 
-   * @method getWidth
+   * @method getSide
+   * @param {Number} sideIndex 
    */
-  getWidth() {
-    return this.controller.scaleValue(this.width);
+  getSide(sideIndex) {
+    return this.controller.scaleValue(this.calculateSide(sideIndex));
   }
 
   /**
-   * Returns width accounting for distortFactor.
+   * Returns the length of a triangle side. Expects an index between 0 and 2.
    * 
-   * @method getHeight
+   * @method calculateSide
+   * @param {Number} sideIndex 
    */
-  getHeight() {
-    return this.controller.scaleValue(this.height);
+  calculateSide(sideIndex) {
+    sideIndex = int(sideIndex);
+    switch (sideIndex) {
+      case 0:
+        return dist(this.point0.x, this.point0.y, this.point1.x, this.point1.y);
+      case 1:
+        return dist(this.point1.x, this.point1.y, this.point2.x, this.point2.y);
+      case 2:
+        return dist(this.point2.x, this.point2.y, this.point0.x, this.point0.y);
+      default:
+        throw new Error(&quot;calculateSide() expects a number between 0 and 2. It was given &quot; + sideIndex + &quot;.&quot;);
+    }
   }
 
 }
