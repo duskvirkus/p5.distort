@@ -21,7 +21,7 @@ class DistortRectangle extends DistortElement {
   }
 
   /**
-   * Will generate points for this element in a circle shape. Detail defines how many points are generated.
+   * Will generate points for this element in a rectangular shape. Detail defines how many points are generated.
    * 
    * @method generatePoints
    * @param {Number} detail 

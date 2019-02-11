@@ -658,7 +658,7 @@
         {
             "file": "src\\DistortRectangle.js",
             "line": 23,
-            "description": "Will generate points for this element in a circle shape. Detail defines how many points are generated.",
+            "description": "Will generate points for this element in a rectangular shape. Detail defines how many points are generated.",
             "itemtype": "method",
             "name": "generatePoints",
             "params": [
