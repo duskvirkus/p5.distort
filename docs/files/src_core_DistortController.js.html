@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src\TransformPointBuiltIn.js - p5.distort</title>
+    <title>src\core\DistortController.js - p5.distort</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -88,47 +88,100 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1 class="file-heading">File: src\TransformPointBuiltIn.js</h1>
+<h1 class="file-heading">File: src\core\DistortController.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
 /**
- * @module tranform-point-functions
- * @class built-in-transform-point-functions
- */
-// TODO rework this yui comment
-
-/**
- * Will transform a point based on perlin noise in both the x and y direction.
+ * Creates a Distort controller. Keeps track of frames and the distort factor.
+ * Also provides a streamlined way to render all elements associated with the controller.
  * 
- * @property PERLIN_NOISE
- * @final
- * @param {DistortElement} element 
- * @param {p5.Vector} point
- * @return {p5.Vector} a point transformed with some perlin noise
+ * @module controller
+ * @class Distort
  */
-const PERLIN_NOISE = (element, point) =&gt; {
-  let noiseScale = 0.01;
-  let xDisplacement = element.distanceFromCenterX(point);
-  let yDisplacement = element.distanceFromCenterY(point);
-  let time = element.controller.currentTime() * TWO_PI;
-  let elementNoiseOffset = element.controller.currentFrame * noiseScale + element.getIndex() * element.controller.framesPerCycle;
-  return createVector(
-    point.x + map(
-      noise(xDisplacement * cos(time) * noiseScale, xDisplacement * sin(time) * noiseScale, elementNoiseOffset),
-      0,
-      1,
-      -element.controller.distortFactor,
-      element.controller.distortFactor
-    ),
-    point.y + map(
-      noise(yDisplacement * cos(time) * noiseScale, yDisplacement * sin(time) * noiseScale, elementNoiseOffset),
-      0,
-      1,
-      -element.controller.distortFactor,
-      element.controller.distortFactor
-    )
-  );
+class Distort {
+
+  /**
+   * @constructor 
+   * @param {Number} distortFactor 
+   * @param {Number} framesPerCycle 
+   */
+  constructor(distortFactor, framesPerCycle) {
+    this.distortFactor = distortFactor;
+    this.framesPerCycle = framesPerCycle;
+    this.currentFrame = 0;
+    this.elements = [];
+  }
+
+  /**
+   * Returns a float value between 0 and 1 that represents the current location in the frameCycle.
+   * 
+   * @method currentTime
+   */
+  currentTime() {
+    return map(this.currentFrame, 0, this.framesPerCycle, 0, 1);
+  }
+
+  /**
+   * Adds an element to the controller. Calling this method directly may result in problems.
+   * This will be done automatically when a DistortElement is created.
+   * If an Element is already been created it&#x27;s controller should be changed using the changeController() method in DistortElement.
+   * 
+   * @method addElement
+   * @param {DistortElement} element 
+   */
+  addElement(element) {
+    this.elements.push(element);
+  }
+
+  /**
+   * Will update frame and all DistortElements under the controller.
+   * 
+   * @method update
+   */
+  update() {
+    for (let i = 0; i &lt; this.elements.length; i++) {
+      this.elements[i].update();
+    }
+    this.currentFrame++;
+  }
+
+  /**
+   * Renders all DistortElements under this controller.
+   * 
+   * @method render
+   */
+  render() {
+    for (let i = 0; i &lt; this.elements.length; i++) {
+      this.elements[i].render();
+    }
+  }
+
+  /**
+   * Scales a value to account for the distortFactor.
+   * 
+   * @method scaleValue
+   * @param {Number} value 
+   */
+  scaleValue(value) {
+    return value - 2 * (value / this.distortFactor);
+  }
+
+  /**
+   * Returns an index for the element. -1 if not in controller.
+   * 
+   * @method elementIndex
+   * @param {DistortElement} element 
+   */
+  elementIndex(element) {
+    for (let i = 0; i &lt; this.elements.length; i++) {
+      if (this.elements[i] === element) {
+        return i;
+      }
+    }
+    return -1;
+  }
+
 }
     </pre>
 </div>

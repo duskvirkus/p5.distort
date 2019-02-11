@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src\DistortEllipse.js - p5.distort</title>
+    <title>src\text\DistortString.js - p5.distort</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -88,65 +88,105 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1 class="file-heading">File: src\DistortEllipse.js</h1>
+<h1 class="file-heading">File: src\text\DistortString.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
 /**
+ * Creates a DistortElement from a string of text.
+ * 
  * @module elements
- * @submodule elements-primitives
- * @class DistortEllipse
+ * @submodule elements-text
+ * @class DistortString
  */
-class DistortEllipse extends DistortElement {
+class DistortString extends DistortElement {
 
-  /**
+  /** 
    * @constructor
    * @param {Distort} controller 
    * @param {p5.Vector} position 
-   * @param {Number} width
-   * @param {Number} height
-   * @param {Number} detail 
+   * @param {Number} size 
+   * @param {p5.Font} font 
+   * @param {String} string 
    */
-  constructor(controller, position, width, height, detail) {
-    super(controller, position);
-    this.width = width;
-    this.height = height;
-    this.generatePoints(detail);
+  constructor(controller, position, font, string, size) {
+    super(controller, position, size);
+    this.font = font;
+    this.string = string;
+    this.size = size;
+
+    this.distanceThreshold = 3;
+
+    this.generateBounds();
+    this.generatePoints();
+
+    this.setPosition(createVector(position.x, position.y)); // TODO make this more elegant
   }
 
   /**
-   * Will generate points for this element in a circle shape. Detail defines how many points are generated.
+   * Will generate points from the string and separates the different shapes required to draw text.
    * 
    * @method generatePoints
-   * @param {Number} detail 
    */
-  generatePoints(detail) {
+  generatePoints() {
+    let p5Points = this.font.textToPoints(
+      this.string,
+      (this.position.x - this.bounds.w / 2) - this.bounds.advance,
+      this.position.y + this.bounds.h / 2,
+      this.getSize(),
+      {
+        sampleFactor: 1,
+        simplifyThreshold: 0,
+      }
+    );
     let points = [];
-    for (let i = 0; i &lt; detail; i++) {
-      let angle = map(i, 0, detail, 0, TWO_PI);
-      let x = this.getWidth() / 2 * cos(angle);
-      let y = this.getHeight() / 2 * sin(angle);
-      points.push(createVector(x + this.position.x, y + this.position.y));
+    if (p5Points.length &gt; 0) {
+      points.push(p5Points[0]);
+    }
+    for (let i = 1; i &lt; p5Points.length; i++) {
+      if (this.differentShape(p5Points, i)) {
+        this.pointGroups.push(points);
+        points = [];
+      }
+      points.push(p5Points[i]);
     }
     this.pointGroups.push(points);
   }
 
+
+  // TODO change name
+  // TODO improve distanceThreshold
   /**
-   * Returns width accounting for distortFactor.
+   * Helper method that returns a boolean if point at an index should be in a different shape.
    * 
-   * @method getWidth
+   * @method differentShape
+   * @param {p5.Vector[]} points 
+   * @param {Number} pointIndex 
    */
-  getWidth() {
-    return this.controller.scaleValue(this.width);
+  differentShape(points, pointIndex) {
+    if (pointIndex &lt;= 0 || pointIndex &gt; points.length - 1) {
+      return false;
+    } else {
+      let distance = dist(points[pointIndex - 1].x, points[pointIndex - 1].y, points[pointIndex].x, points[pointIndex].y);
+      return distance &gt; this.distanceThreshold;
+    }
   }
 
   /**
-   * Returns width accounting for distortFactor.
+   * A method that will generate text bounds for use in positioning text correctly.
    * 
-   * @method getHeight
+   * @method generateBounds
    */
-  getHeight() {
-    return this.controller.scaleValue(this.height);
+  generateBounds() {
+    this.bounds = this.font.textBounds(this.string, this.position.x, this.position.y, this.getSize());
+    this.position = createVector(this.position.x - ((this.bounds.x) / 2), this.position.y - (this.bounds.y / 2));
+  }
+
+  /**
+   * 
+   */
+  getSize() {
+    return this.controller.scaleValue(this.size);
   }
 
 }

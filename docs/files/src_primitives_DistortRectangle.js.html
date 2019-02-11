@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src\DistortString.js - p5.distort</title>
+    <title>src\primitives\DistortRectangle.js - p5.distort</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -88,105 +88,81 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1 class="file-heading">File: src\DistortString.js</h1>
+<h1 class="file-heading">File: src\primitives\DistortRectangle.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
 /**
- * Creates a DistortElement from a string of text.
- * 
  * @module elements
- * @submodule elements-text
- * @class DistortString
+ * @submodule elements-primitives
+ * @class DistortRectangle
  */
-class DistortString extends DistortElement {
+class DistortRectangle extends DistortElement {
 
-  /** 
+  /**
    * @constructor
    * @param {Distort} controller 
    * @param {p5.Vector} position 
-   * @param {Number} size 
-   * @param {p5.Font} font 
-   * @param {String} string 
+   * @param {Number} width
+   * @param {Number} height
+   * @param {Number} detail 
    */
-  constructor(controller, position, font, string, size) {
-    super(controller, position, size);
-    this.font = font;
-    this.string = string;
-    this.size = size;
-
-    this.distanceThreshold = 3;
-
-    this.generateBounds();
-    this.generatePoints();
-
-    this.setPosition(createVector(position.x, position.y)); // TODO make this more elegant
+  constructor(controller, position, width, height, detail) {
+    super(controller, position);
+    this.width = width;
+    this.height = height;
+    this.generatePoints(detail);
   }
 
   /**
-   * Will generate points from the string and separates the different shapes required to draw text.
+   * Will generate points for this element in a rectangular shape. Detail defines how many points are generated.
    * 
    * @method generatePoints
+   * @param {Number} detail 
    */
-  generatePoints() {
-    let p5Points = this.font.textToPoints(
-      this.string,
-      (this.position.x - this.bounds.w / 2) - this.bounds.advance,
-      this.position.y + this.bounds.h / 2,
-      this.getSize(),
-      {
-        sampleFactor: 1,
-        simplifyThreshold: 0,
-      }
-    );
+  generatePoints(detail) {
     let points = [];
-    if (p5Points.length &gt; 0) {
-      points.push(p5Points[0]);
+    let horizontalPoints = int((this.getWidth() / (this.getWidth() + this.getHeight())) * detail) / 2;
+    let verticalPoints = (detail - (horizontalPoints * 2)) / 2;
+    for (let i = 0; i &lt; horizontalPoints; i++) {
+      let x = map(i, 0, horizontalPoints, - this.getWidth() / 2, this.getWidth() / 2);
+      let y = - this.getHeight() / 2;
+      points.push(createVector(x + this.position.x, y + this.position.y));
     }
-    for (let i = 1; i &lt; p5Points.length; i++) {
-      if (this.differentShape(p5Points, i)) {
-        this.pointGroups.push(points);
-        points = [];
-      }
-      points.push(p5Points[i]);
+    for (let i = 0; i &lt; verticalPoints; i++) {
+      let x = this.getWidth() / 2;
+      let y = map(i, 0, verticalPoints, - this.getHeight() / 2, this.getHeight() / 2);
+      points.push(createVector(x + this.position.x, y + this.position.y));
+    }
+    for (let i = 0; i &lt; horizontalPoints; i++) {
+      let x = map(i, 0, horizontalPoints, this.getWidth() / 2, - this.getWidth() / 2);
+      let y = this.getHeight() / 2;
+      points.push(createVector(x + this.position.x, y + this.position.y));
+    }
+    for (let i = 0; i &lt; verticalPoints; i++) {
+      let x = - this.getWidth() / 2;
+      let y = map(i, 0, verticalPoints, this.getHeight() / 2, - this.getHeight() / 2);
+      points.push(createVector(x + this.position.x, y + this.position.y));
     }
     this.pointGroups.push(points);
   }
 
-
-  // TODO change name
-  // TODO improve distanceThreshold
   /**
-   * Helper method that returns a boolean if point at an index should be in a different shape.
+   * Returns width accounting for distortFactor.
    * 
-   * @method differentShape
-   * @param {p5.Vector[]} points 
-   * @param {Number} pointIndex 
+   * @method getWidth
    */
-  differentShape(points, pointIndex) {
-    if (pointIndex &lt;= 0 || pointIndex &gt; points.length - 1) {
-      return false;
-    } else {
-      let distance = dist(points[pointIndex - 1].x, points[pointIndex - 1].y, points[pointIndex].x, points[pointIndex].y);
-      return distance &gt; this.distanceThreshold;
-    }
+  getWidth() {
+    return this.controller.scaleValue(this.width);
   }
 
   /**
-   * A method that will generate text bounds for use in positioning text correctly.
+   * Returns width accounting for distortFactor.
    * 
-   * @method generateBounds
+   * @method getHeight
    */
-  generateBounds() {
-    this.bounds = this.font.textBounds(this.string, this.position.x, this.position.y, this.getSize());
-    this.position = createVector(this.position.x - ((this.bounds.x) / 2), this.position.y - (this.bounds.y / 2));
-  }
-
-  /**
-   * 
-   */
-  getSize() {
-    return this.controller.scaleValue(this.size);
+  getHeight() {
+    return this.controller.scaleValue(this.height);
   }
 
 }
