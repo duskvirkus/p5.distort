@@ -4,7 +4,9 @@ YUI.add("yuidoc-meta", function(Y) {
         "Distort",
         "DistortElement",
         "DistortEllipse",
+        "DistortRectangle",
         "DistortString",
+        "DistortTriangle",
         "built-in-transform-point-functions"
     ],
     "modules": [

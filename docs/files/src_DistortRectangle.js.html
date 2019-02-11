@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>built-in-transform-point-functions - p5.distort</title>
+    <title>src\DistortRectangle.js - p5.distort</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -88,106 +88,85 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1>built-in-transform-point-functions Class</h1>
-<div class="box meta">
+<h1 class="file-heading">File: src\DistortRectangle.js</h1>
 
+<div class="file">
+    <pre class="code prettyprint linenums">
+/**
+ * @module elements
+ * @submodule elements-primitives
+ * @class DistortRectangle
+ */
+class DistortRectangle extends DistortElement {
 
-        <div class="foundat">
-            Defined in: <a href="../files/src_TransformPointBuiltIn.js.html#l1"><code>src\TransformPointBuiltIn.js:1</code></a>
-        </div>
+  /**
+   * @constructor
+   * @param {Distort} controller 
+   * @param {p5.Vector} position 
+   * @param {Number} width
+   * @param {Number} height
+   * @param {Number} detail 
+   */
+  constructor(controller, position, width, height, detail) {
+    super(controller, position);
+    this.width = width;
+    this.height = height;
+    this.generatePoints(detail);
+  }
 
-            Module: <a href="../modules/tranform-point-functions.html">tranform-point-functions</a>
+  /**
+   * Will generate points for this element in a rectangular shape. Detail defines how many points are generated.
+   * 
+   * @method generatePoints
+   * @param {Number} detail 
+   */
+  generatePoints(detail) {
+    let points = [];
+    let horizontalPoints = int((this.getWidth() / (this.getWidth() + this.getHeight())) * detail) / 2;
+    let verticalPoints = (detail - (horizontalPoints * 2)) / 2;
+    for (let i = 0; i &lt; horizontalPoints; i++) {
+      let x = map(i, 0, horizontalPoints, - this.getWidth() / 2, this.getWidth() / 2);
+      let y = - this.getHeight() / 2;
+      points.push(createVector(x + this.position.x, y + this.position.y));
+    }
+    for (let i = 0; i &lt; verticalPoints; i++) {
+      let x = this.getWidth() / 2;
+      let y = map(i, 0, verticalPoints, - this.getHeight() / 2, this.getHeight() / 2);
+      points.push(createVector(x + this.position.x, y + this.position.y));
+    }
+    for (let i = 0; i &lt; horizontalPoints; i++) {
+      let x = map(i, 0, horizontalPoints, this.getWidth() / 2, - this.getWidth() / 2);
+      let y = this.getHeight() / 2;
+      points.push(createVector(x + this.position.x, y + this.position.y));
+    }
+    for (let i = 0; i &lt; verticalPoints; i++) {
+      let x = - this.getWidth() / 2;
+      let y = map(i, 0, verticalPoints, this.getHeight() / 2, - this.getHeight() / 2);
+      points.push(createVector(x + this.position.x, y + this.position.y));
+    }
+    this.pointGroups.push(points);
+  }
 
-</div>
+  /**
+   * Returns width accounting for distortFactor.
+   * 
+   * @method getWidth
+   */
+  getWidth() {
+    return this.controller.scaleValue(this.width);
+  }
 
+  /**
+   * Returns width accounting for distortFactor.
+   * 
+   * @method getHeight
+   */
+  getHeight() {
+    return this.controller.scaleValue(this.height);
+  }
 
-<div class="box intro">
-    
-</div>
-
-
-<div id="classdocs" class="tabview">
-    <ul class="api-class-tabs">
-        <li class="api-class-tab index"><a href="#index">Index</a></li>
-
-            <li class="api-class-tab properties"><a href="#properties">Properties</a></li>
-    </ul>
-
-    <div>
-        <div id="index" class="api-class-tabpanel index">
-            <h2 class="off-left">Item Index</h2>
-
-
-                <div class="index-section properties">
-                    <h3>Properties</h3>
-
-                    <ul class="index-list properties">
-                            <li class="index-item property">
-                                <a href="#property_PERLIN_NOISE">PERLIN_NOISE</a>
-
-                            </li>
-                    </ul>
-                </div>
-
-
-        </div>
-
-
-            <div id="properties" class="api-class-tabpanel">
-                <h2 class="off-left">Properties</h2>
-
-<div id="property_PERLIN_NOISE" class="property item">
-    <h3 class="name"><code>PERLIN_NOISE</code></h3>
-    <span class="type">Unknown</span>
-
-
-
-        <span class="flag final">final</span>
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/src_TransformPointBuiltIn.js.html#l7"><code>src\TransformPointBuiltIn.js:7</code></a>
-        </p>
-
-
-    </div>
-
-    <div class="description">
-        <p>Will transform a point based on perlin noise in both the x and y direction.</p>
-
-    </div>
-
-
-
-        <h4>Sub-properties:</h4>
-
-        <ul class="params-list">
-            <li class="param">
-                    <code class="param-name">element</code>
-                    <span class="type"><a href="../classes/DistortElement.html" class="crosslink">DistortElement</a></span>
-
-                <div class="param-description">
-                     
-                </div>
-
-            </li>
-            <li class="param">
-                    <code class="param-name">point</code>
-                    <span class="type">p5.Vector</span>
-
-                <div class="param-description">
-                     
-                </div>
-
-            </li>
-        </ul>
-</div>
-            </div>
-
-
-    </div>
+}
+    </pre>
 </div>
                     </div>
                 </div>

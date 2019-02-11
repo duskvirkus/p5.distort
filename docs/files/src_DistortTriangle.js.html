@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>built-in-transform-point-functions - p5.distort</title>
+    <title>src\DistortTriangle.js - p5.distort</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -88,106 +88,97 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1>built-in-transform-point-functions Class</h1>
-<div class="box meta">
+<h1 class="file-heading">File: src\DistortTriangle.js</h1>
 
+<div class="file">
+    <pre class="code prettyprint linenums">
+/**
+ * @module elements
+ * @submodule elements-primitives
+ * @class DistortTriangle
+ */
+class DistortTriangle extends DistortElement {
 
-        <div class="foundat">
-            Defined in: <a href="../files/src_TransformPointBuiltIn.js.html#l1"><code>src\TransformPointBuiltIn.js:1</code></a>
-        </div>
+  // TODO add check to see if detail is greater that 3
+  /**
+   * @constructor
+   * @param {Distort} controller 
+   * @param {p5.Vector} position 
+   * @param {p5.Vector} point0
+   * @param {p5.Vector} point1
+   * @param {p5.Vector} point2
+   * @param {Number} detail 
+   */
+  constructor(controller, position, point0, point1, point2, detail) {
+    super(controller, position);
+    this.point0 = point0;
+    this.point1 = point1;
+    this.point2 = point2;
+    this.generatePoints(detail);
+  }
 
-            Module: <a href="../modules/tranform-point-functions.html">tranform-point-functions</a>
+  /**
+   * Will generate points for this element in a triangle shape. Detail defines how many points are generated.
+   * 
+   * @method generatePoints
+   * @param {Number} detail 
+   */
+  generatePoints(detail) {
+    let points = [];
+    let side0Points = int((this.getSide(0) / (this.getSide(0) + this.getSide(1) + this.getSide(2))) * detail);
+    let side1Points = int((this.getSide(1) / (this.getSide(0) + this.getSide(1) + this.getSide(2))) * detail);
+    let side2Points = detail - (side0Points + side1Points);
+    for (let i = 0; i &lt; side0Points; i++) {
+      let x = lerp(this.point0.x, this.point1.x, i / float(side0Points));
+      let y = lerp(this.point0.y, this.point1.y, i / float(side0Points));
+      points.push(createVector(x + this.position.x, y + this.position.y));
+    }
+    // TODO refactor into double for loop
+    for (let i = 0; i &lt; side1Points; i++) {
+      let x = lerp(this.point1.x, this.point2.x, i / float(side1Points));
+      let y = lerp(this.point1.y, this.point2.y, i / float(side1Points));
+      points.push(createVector(x + this.position.x, y + this.position.y));
+    }
+    for (let i = 0; i &lt; side2Points; i++) {
+      let x = lerp(this.point2.x, this.point0.x, i / float(side2Points));
+      let y = lerp(this.point2.y, this.point0.y, i / float(side2Points));
+      points.push(createVector(x + this.position.x, y + this.position.y));
+    }
+    this.pointGroups.push(points);
+  }
 
-</div>
+  /**
+   * Returns a side length of the triangle accounting for the distortFactor. Expects a side index between 0 and 2.
+   * 
+   * @method getSide
+   * @param {Number} sideIndex 
+   */
+  getSide(sideIndex) {
+    return this.controller.scaleValue(this.calculateSide(sideIndex));
+  }
 
+  /**
+   * Returns the length of a triangle side. Expects an index between 0 and 2.
+   * 
+   * @method calculateSide
+   * @param {Number} sideIndex 
+   */
+  calculateSide(sideIndex) {
+    sideIndex = int(sideIndex);
+    switch (sideIndex) {
+      case 0:
+        return dist(this.point0.x, this.point0.y, this.point1.x, this.point1.y);
+      case 1:
+        return dist(this.point1.x, this.point1.y, this.point2.x, this.point2.y);
+      case 2:
+        return dist(this.point2.x, this.point2.y, this.point0.x, this.point0.y);
+      default:
+        throw new Error(&quot;calculateSide() expects a number between 0 and 2. It was given &quot; + sideIndex + &quot;.&quot;);
+    }
+  }
 
-<div class="box intro">
-    
-</div>
-
-
-<div id="classdocs" class="tabview">
-    <ul class="api-class-tabs">
-        <li class="api-class-tab index"><a href="#index">Index</a></li>
-
-            <li class="api-class-tab properties"><a href="#properties">Properties</a></li>
-    </ul>
-
-    <div>
-        <div id="index" class="api-class-tabpanel index">
-            <h2 class="off-left">Item Index</h2>
-
-
-                <div class="index-section properties">
-                    <h3>Properties</h3>
-
-                    <ul class="index-list properties">
-                            <li class="index-item property">
-                                <a href="#property_PERLIN_NOISE">PERLIN_NOISE</a>
-
-                            </li>
-                    </ul>
-                </div>
-
-
-        </div>
-
-
-            <div id="properties" class="api-class-tabpanel">
-                <h2 class="off-left">Properties</h2>
-
-<div id="property_PERLIN_NOISE" class="property item">
-    <h3 class="name"><code>PERLIN_NOISE</code></h3>
-    <span class="type">Unknown</span>
-
-
-
-        <span class="flag final">final</span>
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/src_TransformPointBuiltIn.js.html#l7"><code>src\TransformPointBuiltIn.js:7</code></a>
-        </p>
-
-
-    </div>
-
-    <div class="description">
-        <p>Will transform a point based on perlin noise in both the x and y direction.</p>
-
-    </div>
-
-
-
-        <h4>Sub-properties:</h4>
-
-        <ul class="params-list">
-            <li class="param">
-                    <code class="param-name">element</code>
-                    <span class="type"><a href="../classes/DistortElement.html" class="crosslink">DistortElement</a></span>
-
-                <div class="param-description">
-                     
-                </div>
-
-            </li>
-            <li class="param">
-                    <code class="param-name">point</code>
-                    <span class="type">p5.Vector</span>
-
-                <div class="param-description">
-                     
-                </div>
-
-            </li>
-        </ul>
-</div>
-            </div>
-
-
-    </div>
+}
+    </pre>
 </div>
                     </div>
                 </div>
