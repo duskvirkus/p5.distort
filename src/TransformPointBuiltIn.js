@@ -14,20 +14,20 @@
  * @return {p5.Vector} a point transformed with some perlin noise
  */
 const PERLIN_NOISE = (element, point) => {
-  //console.log(element);
   let noiseScale = 0.01;
-  let xDisplacement = element.distanceFromCenterX(point);
-  let yDisplacement = element.distanceFromCenterY(point);
+  let xDisplacement = element.distanceFromCenterX(point) * noiseScale;
+  let yDisplacement = element.distanceFromCenterY(point) * noiseScale;
+  let elementNoiseOffset = element.controller.currentFrame * noiseScale + element.getIndex() * element.controller.framesPerCycle;
   return createVector(
     point.x + map(
-      noise(xDisplacement * noiseScale, element.controller.currentFrame * noiseScale),
+      noise(xDisplacement, elementNoiseOffset),
       0,
       1,
       -element.controller.distortFactor,
       element.controller.distortFactor
     ),
     point.y + map(
-      noise(yDisplacement * noiseScale, element.controller.currentFrame * noiseScale),
+      noise(yDisplacement, elementNoiseOffset),
       0,
       1,
       -element.controller.distortFactor,

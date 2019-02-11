@@ -91,6 +91,7 @@ class DistortElement {
    * @method drawingTraits
    */
   drawingTraits() {
+    strokeWeight(0);
     noStroke();
     fill(0);
   }
@@ -164,6 +165,15 @@ class DistortElement {
    */
   distanceFromCenterY(point) {
     return point.y - this.position.x;
+  }
+
+  /**
+   * Shortcut method for finding index of this element.
+   * 
+   * @method getIndex
+   */
+  getIndex() {
+    return this.controller.elementIndex(this);
   }
 
 }

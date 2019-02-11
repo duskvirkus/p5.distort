@@ -66,10 +66,26 @@ class Distort {
   /**
    * Scales a value to account for the distortFactor.
    * 
+   * @method scaleValue
    * @param {Number} value 
    */
   scaleValue(value) {
     return value - 2 * (value / this.distortFactor);
+  }
+
+  /**
+   * Returns an index for the element. -1 if not in controller.
+   * 
+   * @method elementIndex
+   * @param {DistortElement} element 
+   */
+  elementIndex(element) {
+    for (let i = 0; i < this.elements.length; i++) {
+      if (this.elements[i] === element) {
+        return i;
+      }
+    }
+    return -1;
   }
 
 }

@@ -66,10 +66,26 @@ class Distort {
   /**
    * Scales a value to account for the distortFactor.
    * 
+   * @method scaleValue
    * @param {Number} value 
    */
   scaleValue(value) {
     return value - 2 * (value / this.distortFactor);
+  }
+
+  /**
+   * Returns an index for the element. -1 if not in controller.
+   * 
+   * @method elementIndex
+   * @param {DistortElement} element 
+   */
+  elementIndex(element) {
+    for (let i = 0; i < this.elements.length; i++) {
+      if (this.elements[i] === element) {
+        return i;
+      }
+    }
+    return -1;
   }
 
 }
@@ -166,6 +182,7 @@ class DistortElement {
    * @method drawingTraits
    */
   drawingTraits() {
+    strokeWeight(0);
     noStroke();
     fill(0);
   }
@@ -239,6 +256,15 @@ class DistortElement {
    */
   distanceFromCenterY(point) {
     return point.y - this.position.x;
+  }
+
+  /**
+   * Shortcut method for finding index of this element.
+   * 
+   * @method getIndex
+   */
+  getIndex() {
+    return this.controller.elementIndex(this);
   }
 
 }
@@ -574,20 +600,20 @@ class DistortTriangle extends DistortElement {
  * @return {p5.Vector} a point transformed with some perlin noise
  */
 const PERLIN_NOISE = (element, point) => {
-  //console.log(element);
   let noiseScale = 0.01;
-  let xDisplacement = element.distanceFromCenterX(point);
-  let yDisplacement = element.distanceFromCenterY(point);
+  let xDisplacement = element.distanceFromCenterX(point) * noiseScale;
+  let yDisplacement = element.distanceFromCenterY(point) * noiseScale;
+  let elementNoiseOffset = element.controller.currentFrame * noiseScale + element.getIndex() * element.controller.framesPerCycle;
   return createVector(
     point.x + map(
-      noise(xDisplacement * noiseScale, element.controller.currentFrame * noiseScale),
+      noise(xDisplacement, elementNoiseOffset),
       0,
       1,
       -element.controller.distortFactor,
       element.controller.distortFactor
     ),
     point.y + map(
-      noise(yDisplacement * noiseScale, element.controller.currentFrame * noiseScale),
+      noise(yDisplacement, elementNoiseOffset),
       0,
       1,
       -element.controller.distortFactor,
