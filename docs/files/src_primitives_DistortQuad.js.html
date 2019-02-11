@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>controller - p5.distort</title>
+    <title>src\primitives\DistortQuad.js - p5.distort</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -90,40 +90,36 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1>controller Module</h1>
-<div class="box clearfix meta">
+<h1 class="file-heading">File: src\primitives\DistortQuad.js</h1>
 
+<div class="file">
+    <pre class="code prettyprint linenums">
+/**
+ * @module elements
+ * @submodule elements-primitives
+ * @class DistortQuad
+ */
+class DistortQuad extends DistortPolygon {
 
-        <div class="foundat">
-            Defined in: <a href="../files/src_core_DistortController.js.html#l1"><code>src\core\DistortController.js:1</code></a>
-        </div>
+  /**
+   * @constructor
+   * @param {Distort} controller 
+   * @param {p5.Vector} position 
+   * @param {p5.Vector} point0
+   * @param {p5.Vector} point1
+   * @param {p5.Vector} point2
+   * @param {p5.Vector} point3
+   * @param {Number} detail 
+   */
+  constructor(controller, position, point0, point1, point2, point3, detail) {
+    if (detail &lt; 8) {
+      throw new Error(&quot;DistortQuad requires a minimum of 8 for the detail value&quot;);
+    }
+    super(controller, position, [point0, point1, point2, point3], detail);
+  }
 
-</div>
-
-
-<div class="box intro">
-    <p>Creates a Distort controller. Keeps track of frames and the distort factor.
-Also provides a streamlined way to render all elements associated with the controller.</p>
-
-</div>
-
-
-<div class="yui3-g">
-    <div class="yui3-u-1-2">
-            <p>This module provides the following classes:</p>
-
-            <ul class="module-classes">
-                <li class="module-class">
-                    <a href="../classes/Distort.html">
-                        Distort
-                    </a>
-                </li>
-            </ul>
-    </div>
-
-
-    <div class="yui3-u-1-2">
-    </div>
+}
+    </pre>
 </div>
                     </div>
                 </div>

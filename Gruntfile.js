@@ -22,9 +22,11 @@ module.exports = function (grunt) {
         src: [
           'src/core/DistortController.js',
           'src/core/DistortElement.js',
+          'src/primitives/DistortPolygon.js',
           'src/primitives/DistortEllipse.js',
           'src/primitives/DistortRectangle.js',
           'src/primitives/DistortTriangle.js',
+          'src/primitives/DistortQuad.js',
           'src/text/DistortString.js',
           'src/transform/PerlinNoise.js',
         ],

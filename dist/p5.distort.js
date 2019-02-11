@@ -70,7 +70,7 @@ class Distort {
    * @param {Number} value 
    */
   scaleValue(value) {
-    return value - 2 * (value / this.distortFactor);
+    return value - (2 * this.distortFactor);
   }
 
   /**
@@ -271,6 +271,93 @@ class DistortElement {
 /**
  * @module elements
  * @submodule elements-primitives
+ * @class DistortPolygon
+ */
+class DistortPolygon extends DistortElement {
+
+  /**
+   * @constructor
+   * @param {Distort} controller 
+   * @param {p5.Vector} position 
+   * @param {p5.Vector} corners
+   * @param {Number} detail 
+   */
+  constructor(controller, position, corners, detail) {
+    super(controller, position);
+    this.corners = corners;
+    this.generatePoints(int(detail));
+  }
+
+  /**
+   * Will generate points for this element in a triangle shape. Detail defines how many points are generated.
+   * 
+   * @method generatePoints
+   * @param {Number} detail 
+   */
+  generatePoints(detail) {
+    let points = [];
+    let numberOfSidePoints = [];
+    for (let i = 0; i < this.corners.length; i++) {
+      numberOfSidePoints.push(int((this.getSide(i) / this.getPerimeter()) * detail));
+    }
+    for (let i = 0; i < numberOfSidePoints.length; i++) {
+      let k = i + 1;
+      if (k >= this.corners.length) {
+        k = 0;
+      }
+      for (let j = 0; j < numberOfSidePoints[i]; j++) {
+        let x = lerp(this.corners[i].x, this.corners[k].x, j / float(numberOfSidePoints[i]));
+        let y = lerp(this.corners[i].y, this.corners[k].y, j / float(numberOfSidePoints[i]));
+        console.log("x " + i + " " + j + ": " + x);
+        console.log("y " + i + " " + j + ": " + y);
+        points.push(createVector(x + this.position.x, y + this.position.y));
+      }
+    }
+    this.pointGroups.push(points);
+  }
+
+  /**
+   * Returns a side length of the polygon accounting for the distortFactor.
+   * 
+   * @method getSide
+   * @param {Number} sideIndex 
+   */
+  getSide(sideIndex) {
+    return this.controller.scaleValue(this.calculateSide(sideIndex));
+  }
+
+  /**
+   * Returns the length of a polygon side.
+   * 
+   * @method calculateSide
+   * @param {Number} sideIndex 
+   */
+  calculateSide(sideIndex) {
+    sideIndex = int(sideIndex);
+    if (sideIndex >= this.corners.length && sideIndex >= 0) {
+      throw new Error("calculateSide() expects a number between 0 and " + this.corners.length - 1 + ". It was given " + sideIndex + ".");
+    }
+    let endPoint = sideIndex < this.corners.length - 1 ? sideIndex + 1 : 0;
+    return dist(this.corners[sideIndex].x, this.corners[sideIndex].y, this.corners[endPoint].x, this.corners[endPoint].y);
+  }
+
+  /**
+   * Gets all scaled side lengths added together.
+   * 
+   * @method getPerimeter
+   */
+  getPerimeter() {
+    let perimeter = 0;
+    for (let i = 0; i < this.corners.length; i++) {
+      perimeter += this.getSide(i);
+    }
+    return perimeter;
+  }
+
+}
+/**
+ * @module elements
+ * @submodule elements-primitives
  * @class DistortEllipse
  */
 class DistortEllipse extends DistortElement {
@@ -405,9 +492,8 @@ class DistortRectangle extends DistortElement {
  * @submodule elements-primitives
  * @class DistortTriangle
  */
-class DistortTriangle extends DistortElement {
+class DistortTriangle extends DistortPolygon {
 
-  // TODO add check to see if detail is greater that 3
   /**
    * @constructor
    * @param {Distort} controller 
@@ -418,71 +504,35 @@ class DistortTriangle extends DistortElement {
    * @param {Number} detail 
    */
   constructor(controller, position, point0, point1, point2, detail) {
-    super(controller, position);
-    this.point0 = point0;
-    this.point1 = point1;
-    this.point2 = point2;
-    this.generatePoints(detail);
+    if (detail < 6) {
+      throw new Error("Distort Triangle requires a minimum of 6 for the detail value");
+    }
+    super(controller, position, [point0, point1, point2], detail);
   }
 
+}
+/**
+ * @module elements
+ * @submodule elements-primitives
+ * @class DistortQuad
+ */
+class DistortQuad extends DistortPolygon {
+
   /**
-   * Will generate points for this element in a triangle shape. Detail defines how many points are generated.
-   * 
-   * @method generatePoints
+   * @constructor
+   * @param {Distort} controller 
+   * @param {p5.Vector} position 
+   * @param {p5.Vector} point0
+   * @param {p5.Vector} point1
+   * @param {p5.Vector} point2
+   * @param {p5.Vector} point3
    * @param {Number} detail 
    */
-  generatePoints(detail) {
-    let points = [];
-    let side0Points = int((this.getSide(0) / (this.getSide(0) + this.getSide(1) + this.getSide(2))) * detail);
-    let side1Points = int((this.getSide(1) / (this.getSide(0) + this.getSide(1) + this.getSide(2))) * detail);
-    let side2Points = detail - (side0Points + side1Points);
-    for (let i = 0; i < side0Points; i++) {
-      let x = lerp(this.point0.x, this.point1.x, i / float(side0Points));
-      let y = lerp(this.point0.y, this.point1.y, i / float(side0Points));
-      points.push(createVector(x + this.position.x, y + this.position.y));
+  constructor(controller, position, point0, point1, point2, point3, detail) {
+    if (detail < 8) {
+      throw new Error("DistortQuad requires a minimum of 8 for the detail value");
     }
-    // TODO refactor into double for loop
-    for (let i = 0; i < side1Points; i++) {
-      let x = lerp(this.point1.x, this.point2.x, i / float(side1Points));
-      let y = lerp(this.point1.y, this.point2.y, i / float(side1Points));
-      points.push(createVector(x + this.position.x, y + this.position.y));
-    }
-    for (let i = 0; i < side2Points; i++) {
-      let x = lerp(this.point2.x, this.point0.x, i / float(side2Points));
-      let y = lerp(this.point2.y, this.point0.y, i / float(side2Points));
-      points.push(createVector(x + this.position.x, y + this.position.y));
-    }
-    this.pointGroups.push(points);
-  }
-
-  /**
-   * Returns a side length of the triangle accounting for the distortFactor. Expects a side index between 0 and 2.
-   * 
-   * @method getSide
-   * @param {Number} sideIndex 
-   */
-  getSide(sideIndex) {
-    return this.controller.scaleValue(this.calculateSide(sideIndex));
-  }
-
-  /**
-   * Returns the length of a triangle side. Expects an index between 0 and 2.
-   * 
-   * @method calculateSide
-   * @param {Number} sideIndex 
-   */
-  calculateSide(sideIndex) {
-    sideIndex = int(sideIndex);
-    switch (sideIndex) {
-      case 0:
-        return dist(this.point0.x, this.point0.y, this.point1.x, this.point1.y);
-      case 1:
-        return dist(this.point1.x, this.point1.y, this.point2.x, this.point2.y);
-      case 2:
-        return dist(this.point2.x, this.point2.y, this.point0.x, this.point0.y);
-      default:
-        throw new Error("calculateSide() expects a number between 0 and 2. It was given " + sideIndex + ".");
-    }
+    super(controller, position, [point0, point1, point2, point3], detail);
   }
 
 }

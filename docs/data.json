@@ -39,6 +39,24 @@
             "fors": {},
             "namespaces": {}
         },
+        "src\\primitives\\DistortPolygon.js": {
+            "name": "src\\primitives\\DistortPolygon.js",
+            "modules": {},
+            "classes": {
+                "DistortPolygon": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src\\primitives\\DistortQuad.js": {
+            "name": "src\\primitives\\DistortQuad.js",
+            "modules": {},
+            "classes": {
+                "DistortQuad": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "src\\primitives\\DistortRectangle.js": {
             "name": "src\\primitives\\DistortRectangle.js",
             "modules": {},
@@ -106,6 +124,8 @@
             "classes": {
                 "DistortElement": 1,
                 "DistortEllipse": 1,
+                "DistortPolygon": 1,
+                "DistortQuad": 1,
                 "DistortRectangle": 1,
                 "DistortTriangle": 1,
                 "DistortString": 1
@@ -137,6 +157,8 @@
             "elements": {},
             "classes": {
                 "DistortEllipse": 1,
+                "DistortPolygon": 1,
+                "DistortQuad": 1,
                 "DistortRectangle": 1,
                 "DistortTriangle": 1
             },
@@ -220,6 +242,34 @@
             "submodule": "elements-primitives",
             "namespace": "",
             "file": "src\\primitives\\DistortEllipse.js",
+            "line": 1
+        },
+        "DistortPolygon": {
+            "name": "DistortPolygon",
+            "shortname": "DistortPolygon",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "elements",
+            "submodule": "elements-primitives",
+            "namespace": "",
+            "file": "src\\primitives\\DistortPolygon.js",
+            "line": 1
+        },
+        "DistortQuad": {
+            "name": "DistortQuad",
+            "shortname": "DistortQuad",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "elements",
+            "submodule": "elements-primitives",
+            "namespace": "",
+            "file": "src\\primitives\\DistortQuad.js",
             "line": 1
         },
         "DistortRectangle": {
@@ -649,6 +699,142 @@
             "submodule": "elements-primitives"
         },
         {
+            "file": "src\\primitives\\DistortPolygon.js",
+            "line": 8,
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "controller",
+                    "description": "",
+                    "type": "Distort"
+                },
+                {
+                    "name": "position",
+                    "description": "",
+                    "type": "p5.Vector"
+                },
+                {
+                    "name": "corners",
+                    "description": "",
+                    "type": "p5.Vector"
+                },
+                {
+                    "name": "detail",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "class": "DistortPolygon",
+            "module": "elements",
+            "submodule": "elements-primitives"
+        },
+        {
+            "file": "src\\primitives\\DistortPolygon.js",
+            "line": 21,
+            "description": "Will generate points for this element in a triangle shape. Detail defines how many points are generated.",
+            "itemtype": "method",
+            "name": "generatePoints",
+            "params": [
+                {
+                    "name": "detail",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "class": "DistortPolygon",
+            "module": "elements",
+            "submodule": "elements-primitives"
+        },
+        {
+            "file": "src\\primitives\\DistortPolygon.js",
+            "line": 49,
+            "description": "Returns a side length of the polygon accounting for the distortFactor.",
+            "itemtype": "method",
+            "name": "getSide",
+            "params": [
+                {
+                    "name": "sideIndex",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "class": "DistortPolygon",
+            "module": "elements",
+            "submodule": "elements-primitives"
+        },
+        {
+            "file": "src\\primitives\\DistortPolygon.js",
+            "line": 59,
+            "description": "Returns the length of a polygon side.",
+            "itemtype": "method",
+            "name": "calculateSide",
+            "params": [
+                {
+                    "name": "sideIndex",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "class": "DistortPolygon",
+            "module": "elements",
+            "submodule": "elements-primitives"
+        },
+        {
+            "file": "src\\primitives\\DistortPolygon.js",
+            "line": 74,
+            "description": "Gets all scaled side lengths added together.",
+            "itemtype": "method",
+            "name": "getPerimeter",
+            "class": "DistortPolygon",
+            "module": "elements",
+            "submodule": "elements-primitives"
+        },
+        {
+            "file": "src\\primitives\\DistortQuad.js",
+            "line": 8,
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "controller",
+                    "description": "",
+                    "type": "Distort"
+                },
+                {
+                    "name": "position",
+                    "description": "",
+                    "type": "p5.Vector"
+                },
+                {
+                    "name": "point0",
+                    "description": "",
+                    "type": "p5.Vector"
+                },
+                {
+                    "name": "point1",
+                    "description": "",
+                    "type": "p5.Vector"
+                },
+                {
+                    "name": "point2",
+                    "description": "",
+                    "type": "p5.Vector"
+                },
+                {
+                    "name": "point3",
+                    "description": "",
+                    "type": "p5.Vector"
+                },
+                {
+                    "name": "detail",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "class": "DistortQuad",
+            "module": "elements",
+            "submodule": "elements-primitives"
+        },
+        {
             "file": "src\\primitives\\DistortRectangle.js",
             "line": 8,
             "is_constructor": 1,
@@ -722,7 +908,7 @@
         },
         {
             "file": "src\\primitives\\DistortTriangle.js",
-            "line": 9,
+            "line": 8,
             "is_constructor": 1,
             "params": [
                 {
@@ -752,57 +938,6 @@
                 },
                 {
                     "name": "detail",
-                    "description": "",
-                    "type": "Number"
-                }
-            ],
-            "class": "DistortTriangle",
-            "module": "elements",
-            "submodule": "elements-primitives"
-        },
-        {
-            "file": "src\\primitives\\DistortTriangle.js",
-            "line": 26,
-            "description": "Will generate points for this element in a triangle shape. Detail defines how many points are generated.",
-            "itemtype": "method",
-            "name": "generatePoints",
-            "params": [
-                {
-                    "name": "detail",
-                    "description": "",
-                    "type": "Number"
-                }
-            ],
-            "class": "DistortTriangle",
-            "module": "elements",
-            "submodule": "elements-primitives"
-        },
-        {
-            "file": "src\\primitives\\DistortTriangle.js",
-            "line": 56,
-            "description": "Returns a side length of the triangle accounting for the distortFactor. Expects a side index between 0 and 2.",
-            "itemtype": "method",
-            "name": "getSide",
-            "params": [
-                {
-                    "name": "sideIndex",
-                    "description": "",
-                    "type": "Number"
-                }
-            ],
-            "class": "DistortTriangle",
-            "module": "elements",
-            "submodule": "elements-primitives"
-        },
-        {
-            "file": "src\\primitives\\DistortTriangle.js",
-            "line": 66,
-            "description": "Returns the length of a triangle side. Expects an index between 0 and 2.",
-            "itemtype": "method",
-            "name": "calculateSide",
-            "params": [
-                {
-                    "name": "sideIndex",
                     "description": "",
                     "type": "Number"
                 }
@@ -937,11 +1072,19 @@
         },
         {
             "message": "Missing item type",
+            "line": " src\\primitives\\DistortPolygon.js:8"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\primitives\\DistortQuad.js:8"
+        },
+        {
+            "message": "Missing item type",
             "line": " src\\primitives\\DistortRectangle.js:8"
         },
         {
             "message": "Missing item type",
-            "line": " src\\primitives\\DistortTriangle.js:9"
+            "line": " src\\primitives\\DistortTriangle.js:8"
         },
         {
             "message": "Missing item type",

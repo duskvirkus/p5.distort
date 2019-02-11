@@ -70,7 +70,7 @@ class Distort {
    * @param {Number} value 
    */
   scaleValue(value) {
-    return value - 2 * (value / this.distortFactor);
+    return value - (2 * this.distortFactor);
   }
 
   /**
