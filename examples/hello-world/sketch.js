@@ -10,8 +10,8 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  frameRate(30);
-  distort = new Distort(32, 30);
+  frameRate(60);
+  distort = new Distort(32, 1200);
 
   helloWorld = new DistortString(distort, createVector(width / 2, height / 2), font, "Hello World", height / 3);
   helloWorld.setTransformPoint(PERLIN_NOISE);
