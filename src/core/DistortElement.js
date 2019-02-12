@@ -82,7 +82,7 @@ class DistortElement {
         endContour();
       }
     }
-    endShape(CLOSE);
+    endShape(this.endTrait());
   }
 
   /**
@@ -105,6 +105,15 @@ class DistortElement {
    */
   setDrawingTraits(drawingTraitsFunction) {
     this.drawingTraits = drawingTraitsFunction;
+  }
+
+  /**
+   * Default function that returns CLOSE for the end of the shape.
+   * 
+   * @method endTrait
+   */
+  endTrait() {
+    return CLOSE;
   }
 
   /**

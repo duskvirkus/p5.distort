@@ -17,6 +17,7 @@ class Distort {
     this.framesPerCycle = framesPerCycle;
     this.currentFrame = 0;
     this.elements = [];
+    console.log("p5.distort Started - v0.0.1 - open source p5.js vertex manipulation library created by Fi Graham");
   }
 
   /**
@@ -173,7 +174,7 @@ class DistortElement {
         endContour();
       }
     }
-    endShape(CLOSE);
+    endShape(this.endTrait());
   }
 
   /**
@@ -196,6 +197,15 @@ class DistortElement {
    */
   setDrawingTraits(drawingTraitsFunction) {
     this.drawingTraits = drawingTraitsFunction;
+  }
+
+  /**
+   * Default function that returns CLOSE for the end of the shape.
+   * 
+   * @method endTrait
+   */
+  endTrait() {
+    return CLOSE;
   }
 
   /**
@@ -308,8 +318,6 @@ class DistortPolygon extends DistortElement {
       for (let j = 0; j < numberOfSidePoints[i]; j++) {
         let x = lerp(this.corners[i].x, this.corners[k].x, j / float(numberOfSidePoints[i]));
         let y = lerp(this.corners[i].y, this.corners[k].y, j / float(numberOfSidePoints[i]));
-        console.log("x " + i + " " + j + ": " + x);
-        console.log("y " + i + " " + j + ": " + y);
         points.push(createVector(x + this.position.x, y + this.position.y));
       }
     }
@@ -352,6 +360,38 @@ class DistortPolygon extends DistortElement {
       perimeter += this.getSide(i);
     }
     return perimeter;
+  }
+
+}
+/**
+ * @module elements
+ * @submodule elements-primitives
+ * @class DistortLine
+ */
+class DistortLine extends DistortPolygon {
+
+  /**
+   * @constructor
+   * @param {Distort} controller 
+   * @param {p5.Vector} position 
+   * @param {p5.Vector} point0
+   * @param {p5.Vector} point1
+   * @param {Number} detail 
+   */
+  constructor(controller, position, point0, point1, detail) {
+    if (detail < 2) {
+      throw new Error("Distort Line requires a minimum of 2 for the detail value");
+    }
+    super(controller, position, [point0, point1], detail);
+  }
+
+  /**
+   * Overrides the default DistortElement endTrait so the line shape doesn't get closed.
+   * 
+   * @method endTrait
+   */
+  endTrait() {
+    return;
   }
 
 }

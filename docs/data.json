@@ -39,6 +39,15 @@
             "fors": {},
             "namespaces": {}
         },
+        "src\\primitives\\DistortLine.js": {
+            "name": "src\\primitives\\DistortLine.js",
+            "modules": {},
+            "classes": {
+                "DistortLine": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "src\\primitives\\DistortPolygon.js": {
             "name": "src\\primitives\\DistortPolygon.js",
             "modules": {},
@@ -124,6 +133,7 @@
             "classes": {
                 "DistortElement": 1,
                 "DistortEllipse": 1,
+                "DistortLine": 1,
                 "DistortPolygon": 1,
                 "DistortQuad": 1,
                 "DistortRectangle": 1,
@@ -157,6 +167,7 @@
             "elements": {},
             "classes": {
                 "DistortEllipse": 1,
+                "DistortLine": 1,
                 "DistortPolygon": 1,
                 "DistortQuad": 1,
                 "DistortRectangle": 1,
@@ -242,6 +253,20 @@
             "submodule": "elements-primitives",
             "namespace": "",
             "file": "src\\primitives\\DistortEllipse.js",
+            "line": 1
+        },
+        "DistortLine": {
+            "name": "DistortLine",
+            "shortname": "DistortLine",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "elements",
+            "submodule": "elements-primitives",
+            "namespace": "",
+            "file": "src\\primitives\\DistortLine.js",
             "line": 1
         },
         "DistortPolygon": {
@@ -352,7 +377,7 @@
         },
         {
             "file": "src\\core\\DistortController.js",
-            "line": 22,
+            "line": 23,
             "description": "Returns a float value between 0 and 1 that represents the current location in the frameCycle.",
             "itemtype": "method",
             "name": "currentTime",
@@ -361,7 +386,7 @@
         },
         {
             "file": "src\\core\\DistortController.js",
-            "line": 31,
+            "line": 32,
             "description": "Adds an element to the controller. Calling this method directly may result in problems.\nThis will be done automatically when a DistortElement is created.\nIf an Element is already been created it's controller should be changed using the changeController() method in DistortElement.",
             "itemtype": "method",
             "name": "addElement",
@@ -377,7 +402,7 @@
         },
         {
             "file": "src\\core\\DistortController.js",
-            "line": 43,
+            "line": 44,
             "description": "Will update frame and all DistortElements under the controller.",
             "itemtype": "method",
             "name": "update",
@@ -386,7 +411,7 @@
         },
         {
             "file": "src\\core\\DistortController.js",
-            "line": 55,
+            "line": 56,
             "description": "Renders all DistortElements under this controller.",
             "itemtype": "method",
             "name": "render",
@@ -395,7 +420,7 @@
         },
         {
             "file": "src\\core\\DistortController.js",
-            "line": 66,
+            "line": 67,
             "description": "Scales a value to account for the distortFactor.",
             "itemtype": "method",
             "name": "scaleValue",
@@ -411,7 +436,7 @@
         },
         {
             "file": "src\\core\\DistortController.js",
-            "line": 76,
+            "line": 77,
             "description": "Returns an index for the element. -1 if not in controller.",
             "itemtype": "method",
             "name": "elementIndex",
@@ -534,6 +559,16 @@
         {
             "file": "src\\core\\DistortElement.js",
             "line": 110,
+            "description": "Default function that returns CLOSE for the end of the shape.",
+            "itemtype": "method",
+            "name": "endTrait",
+            "class": "DistortElement",
+            "module": "elements",
+            "submodule": "elements-abstract"
+        },
+        {
+            "file": "src\\core\\DistortElement.js",
+            "line": 119,
             "description": "Will override how a point is transformed. Pass in a function that receives a p5.Vector and return a different p5.Vector.",
             "itemtype": "method",
             "name": "setTransformPoint",
@@ -550,7 +585,7 @@
         },
         {
             "file": "src\\core\\DistortElement.js",
-            "line": 120,
+            "line": 129,
             "description": "Will change the position of an element that has already been created.",
             "itemtype": "method",
             "name": "setPosition",
@@ -567,7 +602,7 @@
         },
         {
             "file": "src\\core\\DistortElement.js",
-            "line": 140,
+            "line": 149,
             "description": "Returns the distance between the center of the element and a point.",
             "itemtype": "method",
             "name": "distanceFromCenter",
@@ -584,7 +619,7 @@
         },
         {
             "file": "src\\core\\DistortElement.js",
-            "line": 150,
+            "line": 159,
             "description": "Returns the distance between the center of the element and a point. Only accounting for the X dimension.",
             "itemtype": "method",
             "name": "distanceFromCenterX",
@@ -601,7 +636,7 @@
         },
         {
             "file": "src\\core\\DistortElement.js",
-            "line": 160,
+            "line": 169,
             "description": "Returns the distance between the center of the element and a point. Only accounting for the Y dimension.",
             "itemtype": "method",
             "name": "distanceFromCenterY",
@@ -618,7 +653,7 @@
         },
         {
             "file": "src\\core\\DistortElement.js",
-            "line": 170,
+            "line": 179,
             "description": "Shortcut method for finding index of this element.",
             "itemtype": "method",
             "name": "getIndex",
@@ -699,6 +734,51 @@
             "submodule": "elements-primitives"
         },
         {
+            "file": "src\\primitives\\DistortLine.js",
+            "line": 8,
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "controller",
+                    "description": "",
+                    "type": "Distort"
+                },
+                {
+                    "name": "position",
+                    "description": "",
+                    "type": "p5.Vector"
+                },
+                {
+                    "name": "point0",
+                    "description": "",
+                    "type": "p5.Vector"
+                },
+                {
+                    "name": "point1",
+                    "description": "",
+                    "type": "p5.Vector"
+                },
+                {
+                    "name": "detail",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "class": "DistortLine",
+            "module": "elements",
+            "submodule": "elements-primitives"
+        },
+        {
+            "file": "src\\primitives\\DistortLine.js",
+            "line": 23,
+            "description": "Overrides the default DistortElement endTrait so the line shape doesn't get closed.",
+            "itemtype": "method",
+            "name": "endTrait",
+            "class": "DistortLine",
+            "module": "elements",
+            "submodule": "elements-primitives"
+        },
+        {
             "file": "src\\primitives\\DistortPolygon.js",
             "line": 8,
             "is_constructor": 1,
@@ -747,7 +827,7 @@
         },
         {
             "file": "src\\primitives\\DistortPolygon.js",
-            "line": 49,
+            "line": 47,
             "description": "Returns a side length of the polygon accounting for the distortFactor.",
             "itemtype": "method",
             "name": "getSide",
@@ -764,7 +844,7 @@
         },
         {
             "file": "src\\primitives\\DistortPolygon.js",
-            "line": 59,
+            "line": 57,
             "description": "Returns the length of a polygon side.",
             "itemtype": "method",
             "name": "calculateSide",
@@ -781,7 +861,7 @@
         },
         {
             "file": "src\\primitives\\DistortPolygon.js",
-            "line": 74,
+            "line": 72,
             "description": "Gets all scaled side lengths added together.",
             "itemtype": "method",
             "name": "getPerimeter",
@@ -1069,6 +1149,10 @@
         {
             "message": "Missing item type",
             "line": " src\\primitives\\DistortEllipse.js:8"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\primitives\\DistortLine.js:8"
         },
         {
             "message": "Missing item type",
