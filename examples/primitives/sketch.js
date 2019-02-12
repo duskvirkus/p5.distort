@@ -22,11 +22,6 @@ function setup() {
     1024
   );
   linePrimitive.setTransformPoint(PERLIN_NOISE);
-  linePrimitive.setDrawingTraits(() => {
-    stroke(0);
-    strokeWeight(2);
-    noFill();
-  });
 
   ellipsePrimitive = new DistortEllipse(
     distort,

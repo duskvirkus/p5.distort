@@ -394,6 +394,17 @@ class DistortLine extends DistortPolygon {
     return;
   }
 
+  /**
+   * Overrides the default DistortElement drawingTraits so stroke will be active.
+   * 
+   * @method drawingTraits
+   */
+  drawingTraits() {
+    noFill();
+    stroke(0);
+    strokeWeight(1);
+  }
+
 }
 /**
  * @module elements

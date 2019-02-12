@@ -779,6 +779,16 @@
             "submodule": "elements-primitives"
         },
         {
+            "file": "src\\primitives\\DistortLine.js",
+            "line": 32,
+            "description": "Overrides the default DistortElement drawingTraits so stroke will be active.",
+            "itemtype": "method",
+            "name": "drawingTraits",
+            "class": "DistortLine",
+            "module": "elements",
+            "submodule": "elements-primitives"
+        },
+        {
             "file": "src\\primitives\\DistortPolygon.js",
             "line": 8,
             "is_constructor": 1,
