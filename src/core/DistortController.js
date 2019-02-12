@@ -17,6 +17,7 @@ class Distort {
     this.framesPerCycle = framesPerCycle;
     this.currentFrame = 0;
     this.elements = [];
+    console.log("p5.distort Started - v0.0.1 - open source p5.js vertex manipulation library created by Fi Graham");
   }
 
   /**

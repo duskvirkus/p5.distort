@@ -1,5 +1,6 @@
 let distort;
 
+let linePrimitive;
 let ellipsePrimitive;
 let rectanglePrimitive;
 let trianglePrimitive;
@@ -13,9 +14,23 @@ function setup() {
 
   let primitiveScale = height * 7 / 8;
 
+  linePrimitive = new DistortLine(
+    distort,
+    createVector(width * 1 / 6, height / 2),
+    createVector(primitiveScale * 1 / 3, primitiveScale * 1 / 3),
+    createVector(-primitiveScale * 1 / 3, -primitiveScale * 1 / 3),
+    1024
+  );
+  linePrimitive.setTransformPoint(PERLIN_NOISE);
+  linePrimitive.setDrawingTraits(() => {
+    stroke(0);
+    strokeWeight(2);
+    noFill();
+  });
+
   ellipsePrimitive = new DistortEllipse(
     distort,
-    createVector(width * 1 / 5, height / 2),
+    createVector(width * 2 / 6, height / 2),
     primitiveScale,
     primitiveScale * 2 / 3,
     1024
@@ -24,7 +39,7 @@ function setup() {
 
   rectanglePrimitive = new DistortRectangle(
     distort,
-    createVector(width * 2 / 5, height / 2),
+    createVector(width * 3 / 6, height / 2),
     primitiveScale,
     primitiveScale * 2 / 3,
     1024
@@ -33,7 +48,7 @@ function setup() {
 
   trianglePrimitive = new DistortTriangle(
     distort,
-    createVector(width * 3 / 5, height / 2),
+    createVector(width * 4 / 6, height / 2),
     createVector(primitiveScale * 1 / 2, -primitiveScale * 1 / 4),
     createVector(-primitiveScale * 1 / 2, -primitiveScale * 1 / 2),
     createVector(0, primitiveScale * 1 / 2),
@@ -43,7 +58,7 @@ function setup() {
 
   quadPrimitive = new DistortQuad(
     distort,
-    createVector(width * 4 / 5, height / 2),
+    createVector(width * 5 / 6, height / 2),
     createVector(0, - primitiveScale * 1 / 2),
     createVector(primitiveScale * 1 / 2, 0),
     createVector(0, primitiveScale * 1 / 2),
@@ -61,8 +76,9 @@ function draw() {
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
-  ellipsePrimitive.setPosition(createVector(width * 1 / 5, height / 2));
-  rectanglePrimitive.setPosition(createVector(width * 2 / 5, height / 2));
-  trianglePrimitive.setPosition(createVector(width * 3 / 5, height / 2));
-  quadPrimitive.setPosition(createVector(width * 4 / 5, height / 2));
+  linePrimitive.setPosition(createVector(width * 1 / 6, height / 2));
+  ellipsePrimitive.setPosition(createVector(width * 2 / 6, height / 2));
+  rectanglePrimitive.setPosition(createVector(width * 3 / 6, height / 2));
+  trianglePrimitive.setPosition(createVector(width * 4 / 6, height / 2));
+  quadPrimitive.setPosition(createVector(width * 5 / 6, height / 2));
 }

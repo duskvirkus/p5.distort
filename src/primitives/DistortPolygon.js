@@ -38,8 +38,6 @@ class DistortPolygon extends DistortElement {
       for (let j = 0; j < numberOfSidePoints[i]; j++) {
         let x = lerp(this.corners[i].x, this.corners[k].x, j / float(numberOfSidePoints[i]));
         let y = lerp(this.corners[i].y, this.corners[k].y, j / float(numberOfSidePoints[i]));
-        console.log("x " + i + " " + j + ": " + x);
-        console.log("y " + i + " " + j + ": " + y);
         points.push(createVector(x + this.position.x, y + this.position.y));
       }
     }
