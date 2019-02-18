@@ -45,13 +45,13 @@ class DistortPolygon extends DistortElement {
   }
 
   /**
-   * Returns a side length of the polygon accounting for the distortFactor.
+   * Returns a side length of the polygon.
    * 
    * @method getSide
    * @param {Number} sideIndex 
    */
   getSide(sideIndex) {
-    return this.controller.scaleValue(this.calculateSide(sideIndex));
+    return this.calculateSide(sideIndex);
   }
 
   /**

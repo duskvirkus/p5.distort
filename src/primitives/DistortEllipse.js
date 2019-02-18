@@ -38,21 +38,21 @@ class DistortEllipse extends DistortElement {
   }
 
   /**
-   * Returns width accounting for distortFactor.
+   * Returns width.
    * 
    * @method getWidth
    */
   getWidth() {
-    return this.controller.scaleValue(this.width);
+    return this.width;
   }
 
   /**
-   * Returns width accounting for distortFactor.
+   * Returns height.
    * 
    * @method getHeight
    */
   getHeight() {
-    return this.controller.scaleValue(this.height);
+    return this.height;
   }
 
 }

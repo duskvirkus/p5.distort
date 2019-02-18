@@ -18,7 +18,7 @@ function setup() {
   frameRate(60);
   distort = new Distort(20, 1200);
 
-  size = width * 5 / 16;
+  size = width * 3 / 16;
 
   logo = new DistortString(distort, createVector(width / 2, height / 2), font, "p5 distort", size);
   logo.setTransformPoint(PERLIN_NOISE);
@@ -28,7 +28,7 @@ function setup() {
     fill(237, 34, 93);
   });
 
-  starOffset = createVector(-size * 1 / 2, size * 1 / 2);
+  starOffset = createVector(-size * 7 / 8, size * 3 / 4);
   star = new DistortString(distort, createVector(logo.position.x + starOffset.x, logo.position.y + starOffset.y), font, "*", size * 5 / 4);
   star.setTransformPoint(PERLIN_NOISE);
   star.setDrawingTraits(() => {
