@@ -421,22 +421,6 @@
         {
             "file": "src\\core\\DistortController.js",
             "line": 67,
-            "description": "Scales a value to account for the distortFactor.",
-            "itemtype": "method",
-            "name": "scaleValue",
-            "params": [
-                {
-                    "name": "value",
-                    "description": "",
-                    "type": "Number"
-                }
-            ],
-            "class": "Distort",
-            "module": "controller"
-        },
-        {
-            "file": "src\\core\\DistortController.js",
-            "line": 77,
             "description": "Returns an index for the element. -1 if not in controller.",
             "itemtype": "method",
             "name": "elementIndex",
@@ -716,7 +700,7 @@
         {
             "file": "src\\primitives\\DistortEllipse.js",
             "line": 40,
-            "description": "Returns width accounting for distortFactor.",
+            "description": "Returns width.",
             "itemtype": "method",
             "name": "getWidth",
             "class": "DistortEllipse",
@@ -726,7 +710,7 @@
         {
             "file": "src\\primitives\\DistortEllipse.js",
             "line": 49,
-            "description": "Returns width accounting for distortFactor.",
+            "description": "Returns height.",
             "itemtype": "method",
             "name": "getHeight",
             "class": "DistortEllipse",
@@ -838,7 +822,7 @@
         {
             "file": "src\\primitives\\DistortPolygon.js",
             "line": 47,
-            "description": "Returns a side length of the polygon accounting for the distortFactor.",
+            "description": "Returns a side length of the polygon.",
             "itemtype": "method",
             "name": "getSide",
             "params": [
@@ -979,7 +963,7 @@
         {
             "file": "src\\primitives\\DistortRectangle.js",
             "line": 56,
-            "description": "Returns width accounting for distortFactor.",
+            "description": "Returns width.",
             "itemtype": "method",
             "name": "getWidth",
             "class": "DistortRectangle",
@@ -989,7 +973,7 @@
         {
             "file": "src\\primitives\\DistortRectangle.js",
             "line": 65,
-            "description": "Returns width accounting for distortFactor.",
+            "description": "Returns height.",
             "itemtype": "method",
             "name": "getHeight",
             "class": "DistortRectangle",
@@ -1116,6 +1100,9 @@
         {
             "file": "src\\text\\DistortString.js",
             "line": 91,
+            "description": "Returns text size.",
+            "itemtype": "method",
+            "name": "getSize",
             "class": "DistortString",
             "module": "elements",
             "submodule": "elements-text"
@@ -1183,10 +1170,6 @@
         {
             "message": "Missing item type",
             "line": " src\\text\\DistortString.js:10"
-        },
-        {
-            "message": "Missing item type",
-            "line": " src\\text\\DistortString.js:91"
         }
     ]
 }

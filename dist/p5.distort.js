@@ -65,16 +65,6 @@ class Distort {
   }
 
   /**
-   * Scales a value to account for the distortFactor.
-   * 
-   * @method scaleValue
-   * @param {Number} value 
-   */
-  scaleValue(value) {
-    return value - (2 * this.distortFactor);
-  }
-
-  /**
    * Returns an index for the element. -1 if not in controller.
    * 
    * @method elementIndex
@@ -325,13 +315,13 @@ class DistortPolygon extends DistortElement {
   }
 
   /**
-   * Returns a side length of the polygon accounting for the distortFactor.
+   * Returns a side length of the polygon.
    * 
    * @method getSide
    * @param {Number} sideIndex 
    */
   getSide(sideIndex) {
-    return this.controller.scaleValue(this.calculateSide(sideIndex));
+    return this.calculateSide(sideIndex);
   }
 
   /**
@@ -446,21 +436,21 @@ class DistortEllipse extends DistortElement {
   }
 
   /**
-   * Returns width accounting for distortFactor.
+   * Returns width.
    * 
    * @method getWidth
    */
   getWidth() {
-    return this.controller.scaleValue(this.width);
+    return this.width;
   }
 
   /**
-   * Returns width accounting for distortFactor.
+   * Returns height.
    * 
    * @method getHeight
    */
   getHeight() {
-    return this.controller.scaleValue(this.height);
+    return this.height;
   }
 
 }
@@ -520,21 +510,21 @@ class DistortRectangle extends DistortElement {
   }
 
   /**
-   * Returns width accounting for distortFactor.
+   * Returns width.
    * 
    * @method getWidth
    */
   getWidth() {
-    return this.controller.scaleValue(this.width);
+    return this.width;
   }
 
   /**
-   * Returns width accounting for distortFactor.
+   * Returns height.
    * 
    * @method getHeight
    */
   getHeight() {
-    return this.controller.scaleValue(this.height);
+    return this.height;
   }
 
 }
@@ -678,10 +668,12 @@ class DistortString extends DistortElement {
   }
 
   /**
+   * Returns text size.
    * 
+   * @method getSize
    */
   getSize() {
-    return this.controller.scaleValue(this.size);
+    return this.size;
   }
 
 }

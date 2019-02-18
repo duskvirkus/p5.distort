@@ -89,10 +89,12 @@ class DistortString extends DistortElement {
   }
 
   /**
+   * Returns text size.
    * 
+   * @method getSize
    */
   getSize() {
-    return this.controller.scaleValue(this.size);
+    return this.size;
   }
 
 }
